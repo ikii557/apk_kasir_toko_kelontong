@@ -6,50 +6,38 @@
                 <ul class="metismenu" id="menu">
                     <li class="nav-label">Dashboard</li>
                     <li>
-                        <a class="has-arrow" href="{{asset('assets/javascript:void()')}}" aria-expanded="false">
+                        <a class="" href="" aria-expanded="false">
                             <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
                         </a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{asset( 'assets/index.html') }}">Home 1</a></li>
-                        </ul>
-                    </li>
-                    <li class="mega-menu mega-menu-sm">
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Layouts</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{asset('assets/layout-blank.html')}}">Blank</a></li>
-                            <li><a href="{{asset('assets/layout-one-column.html')}}">One Column</a></li>
-                            <li><a href="{{asset('assets/layout-two-column.html')}}">Two column</a></li>
-                            <li><a href="{{asset('assets/layout-compact-nav.html')}}">Compact Nav</a></li>
-                            <li><a href="{{asset('assets/layout-vertical.html')}}">Vertical</a></li>
-                            <li><a href="{{asset('assets/layout-horizontal.html')}}">Horizontal</a></li>
-                            <li><a href="{{asset('assets/layout-boxed.html')}}">Boxed</a></li>
-                            <li><a href="{{asset('assets/layout-wide.html')}}">Wide</a></li>
 
-
-                            <li><a href="{{asset('assets/layout-fixed-header.html')}}">Fixed Header</a></li>
-                            <li><a href="{{asset('assets/layout-fixed-sidebar.html')}}">Fixed Sidebar</a></li>
-                        </ul>
                     </li>
                     <li class="nav-label">Apps</li>
-                    <li>
-                        <a class="has-arrow" href="{{asset('assets/javascript:void()')}}" aria-expanded="false">
-                            <i class="icon-envelope menu-icon"></i> <span class="nav-text">Email</span>
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Barang</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="{{asset('assets/email-inbox.html')}}">Inbox</a></li>
-                            <li><a href="{{asset('assets/email-read.html')}}">Read</a></li>
-                            <li><a href="{{asset('assets/email-compose.html')}}">Compose</a></li>
+                        <ul aria-expanded="false">
+                            <li><a href="/barang">Barang</a></li>
+                        </ul>
                         </ul>
                     </li>
                     <li>
                         <a class="has-arrow" href="{{asset('assets/javascript:void()')}}" aria-expanded="false">
-                            <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Apps</span>
+                            <i class="icon-envelope menu-icon"></i> <span class="nav-text">Transaksi</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{asset('assets/email-inbox.html')}}">transaksi</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-label">AKUN</li>
+                    <li>
+                        <a class="has-arrow" href="{{asset('assets/javascript:void()')}}" aria-expanded="false">
+                            <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">user</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{asset('assets/app-profile.html')}}">Profile</a></li>
-                            <li><a href="{{asset('assets/app-calender.html')}}">Calender</a></li>
                         </ul>
                     </li>
                     <li>
@@ -65,7 +53,6 @@
                             <li><a href="{{asset('assets/chart-peity.html')}}">Peity</a></li>
                         </ul>
                     </li>
-                    <li class="nav-label">UI Components</li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-grid menu-icon"></i><span class="nav-text">UI Components</span>
