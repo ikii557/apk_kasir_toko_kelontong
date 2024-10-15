@@ -50,7 +50,7 @@
         ***********************************-->
         <div class="footer">
             <div class="copyright">
-                <p>Copyright &copy; Designed & Developed by <a href="{{asset('assets/https://themeforest.net/user/quixlab')}}">Quixlab</a> 2018</p>
+                <p>Copyright &copy; Designed & Developed by <a href="{{asset('assets/https://themeforest.net/user/quixlab')}}">Quixlab</a> 2024</p>
             </div>
         </div>
         <!--**********************************
