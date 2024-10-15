@@ -37,7 +37,7 @@
                         <ul aria-expanded="false">
                             <li><a href="/transaksi">transaksi</a></li>
                             <li><a href="{{asset('assets/email-read.html')}}">edit transaksi</a></li>
-                            <li><a href="{{asset('assets/email-compose.html')}}">tambah transaksi</a></li>
+                            <li><a href="/tambahtransaksi">tambah transaksi</a></li>
                         </ul>
                     </li>
                     <li>
@@ -47,7 +47,7 @@
                         <ul aria-expanded="false">
                             <li><a href="/barang">barang</a></li>
                             <li><a href="{{asset('assets/chart-morris.html')}}">edit barang</a></li>
-                            <li><a href="{{asset('assets/chart-chartjs.html')}}">tambah barang</a></li>
+                            <li><a href="/tambahbarang">tambah barang</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">UI Components</li>
@@ -57,7 +57,7 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="/profile">Profile</a></li>
-                            <li><a href="{{asset('assets/app-calender.html')}}">Tambah Profile</a></li>
+                            <li><a href="/tambahuser">Tambah Profile</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">Pages</li>

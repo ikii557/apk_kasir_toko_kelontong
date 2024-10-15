@@ -18,7 +18,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="media align-items-center mb-4">
-                                    <img class="mr-3" src="images/avatar/11.png" width="80" height="80" alt="">
+                                    <img class="mr-3" src="{{asset('assets/images/avatar/11.png')}}" width="80" height="80" alt="">
                                     <div class="media-body">
                                         <h3 class="mb-0">Rifki Hadid Anwar</h3>
                                         <p class="text-muted mb-0">Madura</p>
@@ -85,7 +85,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="media media-reply">
-                                    <img class="mr-3 circle-rounded" src="images/avatar/2.jpg" width="50" height="50" alt="Generic placeholder image">
+                                    <img class="mr-3 circle-rounded" src="{{asset('assets/images/avatar/2.jpg')}}" width="50" height="50" alt="Generic placeholder image">
                                     <div class="media-body">
                                         <div class="d-sm-flex justify-content-between mb-2">
                                             <h5 class="mb-sm-0">Milan Gbah <small class="text-muted ml-3">about 3 days ago</small></h5>
@@ -98,14 +98,14 @@
 
                                         <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
                                         <ul>
-                                            <li class="d-inline-block"><img class="rounded" width="60" height="60" src="images/blog/2.jpg" alt=""></li>
-                                            <li class="d-inline-block"><img class="rounded" width="60" height="60" src="images/blog/3.jpg" alt=""></li>
-                                            <li class="d-inline-block"><img class="rounded" width="60" height="60" src="images/blog/4.jpg" alt=""></li>
-                                            <li class="d-inline-block"><img class="rounded" width="60" height="60" src="images/blog/1.jpg" alt=""></li>
+                                            <li class="d-inline-block"><img class="rounded" width="60" height="60" src="{{asset('assets/images/blog/2.jpg')}}" alt=""></li>
+                                            <li class="d-inline-block"><img class="rounded" width="60" height="60" src="{{asset('assets/images/blog/3.jpg')}}" alt=""></li>
+                                            <li class="d-inline-block"><img class="rounded" width="60" height="60" src="{{asset('assets/images/blog/4.jpg')}}" alt=""></li>
+                                            <li class="d-inline-block"><img class="rounded" width="60" height="60" src="{{asset('assets/images/blog/1.jpg')}}" alt=""></li>
                                         </ul>
 
                                         <div class="media mt-3">
-                                        <img class="mr-3 circle-rounded circle-rounded" src="images/avatar/4.jpg" width="50" height="50" alt="Generic placeholder image">
+                                        <img class="mr-3 circle-rounded circle-rounded" src="{{asset('assets/images/avatar/4.jpg')}}" width="50" height="50" alt="Generic placeholder image">
                                         <div class="media-body">
                                             <div class="d-sm-flex justify-content-between mb-2">
                                                 <h5 class="mb-sm-0">Milan Gbah <small class="text-muted ml-3">about 3 days ago</small></h5>
@@ -122,7 +122,7 @@
                             </div>
 
                             <div class="media media-reply">
-                                <img class="mr-3 circle-rounded" src="images/avatar/2.jpg" width="50" height="50" alt="Generic placeholder image">
+                                <img class="mr-3 circle-rounded" src="{{asset('assets/images/avatar/2.jpg')}}" width="50" height="50" alt="Generic placeholder image">
                                 <div class="media-body">
                                     <div class="d-sm-flex justify-content-between mb-2">
                                         <h5 class="mb-sm-0">Milan Gbah <small class="text-muted ml-3">about 3 days ago</small></h5>
@@ -138,7 +138,7 @@
                             </div>
 
                             <div class="media media-reply">
-                                <img class="mr-3 circle-rounded" src="images/avatar/2.jpg" width="50" height="50" alt="Generic placeholder image">
+                                <img class="mr-3 circle-rounded" src="{{asset('assets/images/avatar/2.jpg')}}" width="50" height="50" alt="Generic placeholder image">
                                 <div class="media-body">
                                     <div class="d-sm-flex justify-content-between mb-2">
                                         <h5 class="mb-sm-0">Milan Gbah <small class="text-muted ml-3">about 3 days ago</small></h5>

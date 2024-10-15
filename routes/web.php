@@ -16,24 +16,45 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get("/login", function () {
-    return view("akun.login");
+    return view("pages.akun.login");
 });
-Route::get("/register", action: function () {
-    return view("akun.register");
+
+Route::get("/register", function () {
+    return view("pages.akun.register");
 });
 
 Route::get('/', function () {
     return view('pages.dasboard.index');
 });
-
+// barang
 Route::get('/barang', function () {
     return view('pages.barang.barang');
 });
+Route::get('/tambahbarang', function () {
+    return view('pages.barang.tambahbarang');
+});
+Route::get('/editbarang', function () {
+    return view('pages.barang.editbarang');
+});
 
+
+
+// profile
 Route::get('/profile', function () {
     return view('pages.user.profile');
 });
+Route::get('/tambahuser', function () {
+    return view('pages.user.tambahuser');
+});
 
+
+// transaksi
 Route::get('/transaksi', function () {
     return view('pages.transaksi.transaksi');
+});
+Route::get('/tambahtransaksi', function () {
+    return view('pages.transaksi.tambahtransaksi');
+});
+Route::get('/edittransaksi', function () {
+    return view('pages.transaksi.edittransaksi');
 });
