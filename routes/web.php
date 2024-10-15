@@ -13,6 +13,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+Route::get("/login", function () {
+    return view("akun.login");
+});
+Route::get("/register", action: function () {
+    return view("akun.register");
+});
+
 Route::get('/', function () {
     return view('pages.dasboard.index');
+});
+
+Route::get('/barang', function () {
+    return view('pages.barang.barang');
+});
+
+Route::get('/profile', function () {
+    return view('pages.user.profile');
+});
+
+Route::get('/transaksi', function () {
+    return view('pages.transaksi.transaksi');
 });
