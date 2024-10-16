@@ -9,15 +9,14 @@ class transaksi extends Model
 {
     use HasFactory;
 
-    // Define the table name if it's different from the pluralized form of the model
-    protected $table = 'transaksi'; // Optional if your table is named 'transaksis'
+    // Specify the correct table name if it differs from the default pluralized form
+   
 
-    // Mass assignable attributes
     protected $fillable = [
-        'barang_id',          // Foreign key linking to Barang table
-        'jml_barang',         // Quantity of items
-        'total_harga',        // Total price for the transaction
-        'metode_pembayaran',  // Payment method
+        'barang_id',
+        'jml_barang',
+        'total_harga',
+        'metode_pembayaran',
     ];
 
     // Define the relationship with the Barang model

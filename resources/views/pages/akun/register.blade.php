@@ -26,7 +26,7 @@
 <div class="container ">
         <div class="auth-form ">
             <h4 class="text-center mb-4">Register untuk login</h4>
-            <form action="/store/login" method="post" class="mt-4">
+            <form action="/store/register" method="post" class="mt-4">
                 @csrf
                 <div class="form-group">
                     <label><strong>Nama</strong></label>

@@ -24,30 +24,35 @@
                                                     <th>Opsi<th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody>@foreach ($barangs as $no=> $produk )
+
                                                 <tr>
-                                                    <td><img src="./images/avatar/1.jpg" class=" rounded-circle mr-3" alt="">1</td>
-                                                    <td>iPhone X</td>
+                                                    <td>{{$no +1 }}</td>
+                                                    <td>{{$produk-> nama_barang}}</td>
                                                     <td>
-                                                        <span>Rp.300.000</span>
+                                                        <span>{{$produk-> harga_barang}}</span>
                                                     </td>
+                                                    <td>{{$produk->jumblah_barang}}</td>
                                                     <td>
-                                                        <div>
+                                                        <!-- <div>
                                                             <div class="progress" style="height: 6px">
                                                                 <div class="progress-bar bg-success" style="width: 50%"></div>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                     </td>
+                                                    <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
+                                                </td>
                                                 </tr>
+                                                @endforeach
                                                 <tr>
                                                     <td><img src="./images/avatar/2.jpg" class=" rounded-circle mr-3" alt="">2</td>
                                                     <td>Pixel 2</td>
                                                     <td><span>Rp.4.404.000</span></td>
                                                     <td>
                                                         <div>
-                                                            <div class="progress" style="height: 6px">
+                                                            <!-- <div class="progress" style="height: 6px">
                                                                 <div class="progress-bar bg-success" style="width: 50%"></div>
-                                                            </div>
+                                                            </div> -->
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -57,9 +62,9 @@
                                                     <td><span>Rp.300.000</span></td>
                                                     <td>
                                                         <div>
-                                                            <div class="progress" style="height: 6px">
+                                                            <!-- <div class="progress" style="height: 6px">
                                                                 <div class="progress-bar bg-warning" style="width: 50%"></div>
-                                                            </div>
+                                                            </div> -->
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -69,9 +74,9 @@
                                                     <td><span>Rp.300.000</span></td>
                                                     <td>
                                                         <div>
-                                                            <div class="progress" style="height: 6px">
+                                                            <!-- <div class="progress" style="height: 6px">
                                                                 <div class="progress-bar bg-success" style="width: 50%"></div>
-                                                            </div>
+                                                            </div> -->
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -81,9 +86,9 @@
                                                     <td><span>Rp.300.000</span></td>
                                                     <td>
                                                         <div>
-                                                            <div class="progress" style="height: 6px">
+                                                            <!-- <div class="progress" style="height: 6px">
                                                                 <div class="progress-bar bg-success" style="width: 50%"></div>
-                                                            </div>
+                                                            </div> -->
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -93,9 +98,9 @@
                                                     <td><span>Rp.300.000</span></td>
                                                     <td>
                                                         <div>
-                                                            <div class="progress" style="height: 6px">
+                                                            <!-- <div class="progress" style="height: 6px">
                                                                 <div class="progress-bar bg-warning" style="width: 50%"></div>
-                                                            </div>
+                                                            </div> -->
                                                         </div>
                                                     </td>
 
