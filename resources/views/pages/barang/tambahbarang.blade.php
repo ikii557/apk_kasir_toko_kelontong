@@ -2,10 +2,12 @@
 
 @section('content')
     <div class="container">
-        <h2>Tambah Barang Baru</h2>
+        <h2>Tambah Barang Baru</h2><br>
 
-        <form action="" method="POST">
-            @csrf  <!-- CSRF token untuk keamanan -->
+        <div class="card">
+            <div class="p-4 mt-4 me-4">
+            <form action="" method="POST">
+            @csrf
 
             <!-- Nama Barang -->
             <div class="form-group">
@@ -28,5 +30,7 @@
             <!-- Submit button -->
             <button type="submit" class="btn btn-primary">Tambah Barang</button>
         </form>
+            </div>
+        </div>
     </div>
 @endsection

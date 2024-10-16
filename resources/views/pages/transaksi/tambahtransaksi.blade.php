@@ -4,17 +4,15 @@
     <div class="container">
         <h2>Tambah Transaksi Baru</h2>
 
-        <form action="" method="POST">
-            @csrf  <!-- CSRF token untuk keamanan -->
+        <div class="card">
+            <div class="p-3 mt-4 me-4">
+            <form action="" method="POST">
+            @csrf
 
-            <!-- Nama Barang (berdasarkan barang_id) -->
             <div class="form-group">
                 <label for="barang_id">Nama Barang:</label>
                 <select name="barang_id" id="barang_id" class="form-control" required>
                     <option value="" disabled selected>Pilih Barang</option>
-                    @foreach($barang as $item)
-                        <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
-                    @endforeach
                 </select>
             </div>
 
@@ -44,5 +42,7 @@
             <!-- Submit button -->
             <button type="submit" class="btn btn-primary">Tambah Transaksi</button>
         </form>
+            </div>
+        </div>
     </div>
 @endsection

@@ -17,20 +17,19 @@
                                         <table class="table table-xs mb-0">
                                             <thead>
                                                 <tr>
-                                                    <th>Customers</th>
-                                                    <th>Product</th>
-                                                    <th>Country</th>
-                                                    <th>Status</th>
-                                                    <th>Payment Method</th>
-                                                    <th>Activity</th>
+                                                    <th>NO</th>
+                                                    <th>Nama Barang</th>
+                                                    <th>Harga barang</th>
+                                                    <th>Stok Barang</th>
+                                                    <th>Opsi<th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td><img src="./images/avatar/1.jpg" class=" rounded-circle mr-3" alt="">Sarah Smith</td>
+                                                    <td><img src="./images/avatar/1.jpg" class=" rounded-circle mr-3" alt="">1</td>
                                                     <td>iPhone X</td>
                                                     <td>
-                                                        <span>United States</span>
+                                                        <span>Rp.300.000</span>
                                                     </td>
                                                     <td>
                                                         <div>
@@ -39,16 +38,11 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td><i class="fa fa-circle-o text-success  mr-2"></i> Paid</td>
-                                                    <td>
-                                                        <span>Last Login</span>
-                                                        <span class="m-0 pl-3">10 sec ago</span>
-                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><img src="./images/avatar/2.jpg" class=" rounded-circle mr-3" alt="">Walter R.</td>
+                                                    <td><img src="./images/avatar/2.jpg" class=" rounded-circle mr-3" alt="">2</td>
                                                     <td>Pixel 2</td>
-                                                    <td><span>Canada</span></td>
+                                                    <td><span>Rp.4.404.000</span></td>
                                                     <td>
                                                         <div>
                                                             <div class="progress" style="height: 6px">
@@ -56,16 +50,11 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td><i class="fa fa-circle-o text-success  mr-2"></i> Paid</td>
-                                                    <td>
-                                                        <span>Last Login</span>
-                                                        <span class="m-0 pl-3">50 sec ago</span>
-                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><img src="./images/avatar/3.jpg" class=" rounded-circle mr-3" alt="">Andrew D.</td>
+                                                    <td><img src="./images/avatar/3.jpg" class=" rounded-circle mr-3" alt="">3</td>
                                                     <td>OnePlus</td>
-                                                    <td><span>Germany</span></td>
+                                                    <td><span>Rp.300.000</span></td>
                                                     <td>
                                                         <div>
                                                             <div class="progress" style="height: 6px">
@@ -73,16 +62,11 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td><i class="fa fa-circle-o text-warning  mr-2"></i> Pending</td>
-                                                    <td>
-                                                        <span>Last Login</span>
-                                                        <span class="m-0 pl-3">10 sec ago</span>
-                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><img src="./images/avatar/6.jpg" class=" rounded-circle mr-3" alt=""> Megan S.</td>
+                                                    <td><img src="./images/avatar/6.jpg" class=" rounded-circle mr-3" alt="">4</td>
                                                     <td>Galaxy</td>
-                                                    <td><span>Japan</span></td>
+                                                    <td><span>Rp.300.000</span></td>
                                                     <td>
                                                         <div>
                                                             <div class="progress" style="height: 6px">
@@ -90,16 +74,11 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td><i class="fa fa-circle-o text-success  mr-2"></i> Paid</td>
-                                                    <td>
-                                                        <span>Last Login</span>
-                                                        <span class="m-0 pl-3">10 sec ago</span>
-                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><img src="./images/avatar/4.jpg" class=" rounded-circle mr-3" alt=""> Doris R.</td>
+                                                    <td><img src="./images/avatar/4.jpg" class=" rounded-circle mr-3" alt="">5</td>
                                                     <td>Moto Z2</td>
-                                                    <td><span>England</span></td>
+                                                    <td><span>Rp.300.000</span></td>
                                                     <td>
                                                         <div>
                                                             <div class="progress" style="height: 6px">
@@ -107,16 +86,11 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td><i class="fa fa-circle-o text-success  mr-2"></i> Paid</td>
-                                                    <td>
-                                                        <span>Last Login</span>
-                                                        <span class="m-0 pl-3">10 sec ago</span>
-                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><img src="./images/avatar/5.jpg" class=" rounded-circle mr-3" alt="">Elizabeth W.</td>
+                                                    <td><img src="./images/avatar/5.jpg" class=" rounded-circle mr-3" alt="">6</td>
                                                     <td>Notebook Asus</td>
-                                                    <td><span>China</span></td>
+                                                    <td><span>Rp.300.000</span></td>
                                                     <td>
                                                         <div>
                                                             <div class="progress" style="height: 6px">
@@ -124,11 +98,7 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td><i class="fa fa-circle-o text-warning  mr-2"></i> Pending</td>
-                                                    <td>
-                                                        <span>Last Login</span>
-                                                        <span class="m-0 pl-3">10 sec ago</span>
-                                                    </td>
+
                                                 </tr>
                                             </tbody>
                                         </table>
