@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,23 +16,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware(['guest'])->group(function () {
+    // register
+    Route::get("/register", [AuthController::class,'register'] );
+    Route::post('/store/register', [AuthController::class,'storeregister'] );
+    //login
+    Route::get("/login", [AuthController::class,'login'] )->name('login');
+    Route::post('/store/login', [AuthController::class,'storelogin'] );
 
-
-Route::get("/login", function () {
-    return view("pages.akun.login");
 });
 
-Route::get("/register", function () {
-    return view("pages.akun.register");
-});
-
+Route::middleware(['auth'])->group(function(){
 Route::get('/', function () {
     return view('pages.dasboard.index');
 });
 // barang
-Route::get('/barang', function () {
-    return view('pages.barang.barang');
-});
+Route::get('/barang', [BarangController::class,'index'] );
 Route::get('/tambahbarang', function () {
     return view('pages.barang.tambahbarang');
 });
@@ -49,12 +51,8 @@ Route::get('/tambahuser', function () {
 
 
 // transaksi
-Route::get('/transaksi', function () {
-    return view('pages.transaksi.transaksi');
-});
-Route::get('/tambahtransaksi', function () {
-    return view('pages.transaksi.tambahtransaksi');
-});
-Route::get('/edittransaksi', function () {
-    return view('pages.transaksi.edittransaksi');
+Route::get('/tambahtransaksi', [TransaksiController::class, 'create']);
+Route::post('/transaksi/store', [TransaksiController::class, 'store'])->name('transaksi.store');
+Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
+
 });

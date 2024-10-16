@@ -20,7 +20,7 @@
                                 <div class="media align-items-center mb-4">
                                     <img class="mr-3" src="{{asset('assets/images/avatar/11.png')}}" width="80" height="80" alt="">
                                     <div class="media-body">
-                                        <h3 class="mb-0">Rifki Hadid Anwar</h3>
+                                        <h3 class="mb-0">{{Auth::user()->nama}}</h3>
                                         <p class="text-muted mb-0">Madura</p>
                                     </div>
                                 </div>
@@ -48,8 +48,8 @@
                                 <h4>About Me</h4>
                                 <p class="text-muted">Hi, I'm Pikamy, has been the industry standard dummy text ever since the 1500s.</p>
                                 <ul class="card-profile__info">
-                                    <li class="mb-1"><strong class="text-dark mr-4">Mobile</strong> <span>083134000194</span></li>
-                                    <li><strong class="text-dark mr-4">Email</strong> <span>rifki@gmail.com</span></li>
+                                    <li class="mb-1"><strong class="text-dark mr-4">Mobile</strong> <span>{{Auth::user()->no_hp}}</span></li>
+                                    <li><strong class="text-dark mr-4">Email</strong> <span>{{Auth::user()->email}}</span></li>
                                 </ul>
                             </div>
                         </div>
