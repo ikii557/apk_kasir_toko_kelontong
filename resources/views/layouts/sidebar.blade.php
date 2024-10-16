@@ -50,7 +50,7 @@
                             <li><a href="/tambahbarang">tambah barang</a></li>
                         </ul>
                     </li>
-                    <li class="nav-label">UI Components</li>
+                    <li class="nav-label">Pages</li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">User</span>
@@ -58,26 +58,7 @@
                         <ul aria-expanded="false">
                             <li><a href="/profile">Profile</a></li>
                             <li><a href="/tambahuser">Tambah Profile</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-label">Pages</li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-notebook menu-icon"></i><span class="nav-text">Pages</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="/login">Login</a></li>
-                            <li><a href="/register">Register</a></li>
-                            <li><a href="{{asset('assets/page-lock.html')}}">Lock Screen</a></li>
-                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Error</a>
-                                <ul aria-expanded="false">
-                                    <li><a href="{{asset('assets/page-error-404.html')}}">Error 404</a></li>
-                                    <li><a href="{{asset('assets/page-error-403.html')}}">Error 403</a></li>
-                                    <li><a href="{{asset('assets/page-error-400.html')}}">Error 400</a></li>
-                                    <li><a href="{{asset('assets/page-error-500.html')}}">Error 500</a></li>
-                                    <li><a href="{{asset('assets/page-error-503.html')}}">Error 503</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="/tambahuser">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
