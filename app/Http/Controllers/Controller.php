@@ -16,9 +16,30 @@ class Controller extends BaseController
         return view("profile",compact("users"));
     }
 
+    public function create(){
+        $users=User::all();
+        return view("pages.user.tambahuser",compact("users"));
+    }
+
+    public function store(Request $request){
+        $this->validate($request,[
+            "name"=> "required",
+            "no_hp"=> "required",
+            "email"=> "required",
+            "password"=> "required",
+            ]);
+            $storeDataUser=([
+                "name"=> $request->name,
+                "no_hp"=> $request->no_hp,
+                "email"=> $request->email,
+                "password"=> bcrypt($request->password),
+            ]);
+            User::create(array_merge($request->all(),$request->all()));
+            return redirect("")->with("success","storeDataUser");
+    }
     public function edit($id)
     {
-        $dataUsers =User::find($id);
+        $dataUsers =User::findOrFail($id);
         return view("editprofile",compact("dataUsers"));
     }
 
@@ -31,7 +52,7 @@ class Controller extends BaseController
         'email'=> 'required|unique',
         'password'=> 'required',
     ]);
-    $dataUser = User::find($id);
+    $dataUser = User::findOrFail($id);
 
         if ($request->hasFile('foto')){
             if ($dataUser->foto && file_exists(public_path('foto/'. $dataUser->foto))){

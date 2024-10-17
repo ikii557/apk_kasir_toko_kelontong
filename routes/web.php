@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,9 +33,8 @@ Route::get('/', function () {
 });
 // barang
 Route::get('/barang', [BarangController::class,'index'] );
-Route::get('/tambahbarang', function () {
-    return view('pages.barang.tambahbarang');
-});
+Route::get('/tambahbarang', [BarangController::class,'create'] );
+Route::post('/store', [BarangController::class,'store']) ;
 Route::get('/editbarang', function () {
     return view('pages.barang.editbarang');
 });
@@ -45,9 +45,9 @@ Route::get('/editbarang', function () {
 Route::get('/profile', function () {
     return view('pages.user.profile');
 });
-Route::get('/tambahuser', function () {
-    return view('pages.user.tambahuser');
-});
+Route::get('/editprofile', [Controller::class,'edit']);
+Route::get('/tambahuser', [Controller::class,'create'] );
+Route::post('/store', [Controller::class,'store'] );
 
 
 // transaksi
@@ -55,4 +55,8 @@ Route::get('/tambahtransaksi', [TransaksiController::class, 'create']);
 Route::post('/transaksi/store', [TransaksiController::class, 'store'])->name('transaksi.store');
 Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
 
+
+
+//logout
+Route::get('/logout', [AuthController::class,'logout']);
 });
