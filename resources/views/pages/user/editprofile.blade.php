@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
 
-        <h2>Tambah Pengguna Baru</h2>
+        <h2>Edit Profile Anda</h2>
 
         <div class="card">
             <div class="p-4 mt-4 me-4">

@@ -58,7 +58,7 @@
                         <ul aria-expanded="false">
                             <li><a href="/profile">Profile</a></li>
                             <li><a href="/tambahuser">Tambah Profile</a></li>
-                            <li><a href="/tambahuser">Logout</a></li>
+                            <li><a href="/logout">Logout</a></li>
                         </ul>
                     </li>
                 </ul>

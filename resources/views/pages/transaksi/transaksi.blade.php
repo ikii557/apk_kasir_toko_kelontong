@@ -33,7 +33,7 @@
                                                 <td><span class="label gradient-3 btn-rounded">{{$transaksi->total_harga}}</span></td>
                                                 <td>{{$transaksi->metode_pembayaran}}</td>
 
-                                                <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
+                                                <td><span><a href="/edittransaksi" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="/hapus" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
                                                 </td>
 
                                         </tr>

@@ -41,11 +41,12 @@
                                         </div>
                                     </div>
                                     <div class="col-12 text-center">
-                                        <button class="btn btn-danger px-5">Follow Now</button>
+                                        <button class="btn btn-info px-5"><a href="/editprofile" class="text-white">Edit Profile</a>
+                                        </button>
                                     </div>
                                 </div>
 
-                                <h4>About Me</h4>
+                                <h4>Bio</h4>
                                 <p class="text-muted">Hi, I'm Pikamy, has been the industry standard dummy text ever since the 1500s.</p>
                                 <ul class="card-profile__info">
                                     <li class="mb-1"><strong class="text-dark mr-4">Mobile</strong> <span>{{Auth::user()->no_hp}}</span></li>
