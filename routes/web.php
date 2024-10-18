@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DasboardController;
 use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,13 +29,16 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function(){
-Route::get('/', function () {
-    return view('pages.dasboard.index');
-});
+
+    // dasboard
+Route::get('/', [DasboardController::class,'index'] );
+
+
+
 // barang
 Route::get('/barang', [BarangController::class,'index'] );
 Route::get('/tambahbarang', [BarangController::class,'create'] );
-Route::post('/store', [BarangController::class,'store']) ;
+Route::post('/store/barang', [BarangController::class,'store']) ;
 Route::get('/editbarang', function () {
     return view('pages.barang.editbarang');
 });
@@ -47,13 +51,13 @@ Route::get('/profile', function () {
 });
 Route::get('/editprofile', [Controller::class,'edit']);
 Route::get('/tambahuser', [Controller::class,'create'] );
-Route::post('/store', [Controller::class,'store'] );
+Route::post('/store/user', [Controller::class,'store'] );
 
 
 // transaksi
+Route::get('/transaksi', [TransaksiController::class, 'index']);
 Route::get('/tambahtransaksi', [TransaksiController::class, 'create']);
-Route::post('/transaksi/store', [TransaksiController::class, 'store'])->name('transaksi.store');
-Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
+Route::post('/store/transaksi', [TransaksiController::class, 'store']);
 
 
 

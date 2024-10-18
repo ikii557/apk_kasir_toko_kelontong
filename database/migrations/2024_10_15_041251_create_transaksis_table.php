@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('barang_id');
-            $table->string('jml_barang');
-            $table->string('total_harga');
+            $table->bigInteger('jumlah_barang');
+            $table->bigInteger('total_harga');
             $table->enum('metode_pembayaran', ['tunai','debit','kredit']);
             $table->timestamps();
         });

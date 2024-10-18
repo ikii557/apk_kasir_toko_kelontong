@@ -10,8 +10,8 @@ class Barang extends Model
     use HasFactory;
     protected $fillable = [
         "nama_barang",
+        "stok_barang",
         "harga_barang",
-        "jumblah_barang",
     ];
 
     public function Transaksi()

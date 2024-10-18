@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class transaksi extends Model
+class Transaksi extends Model
 {
     use HasFactory;
 
     // Specify the correct table name if it differs from the default pluralized form
-   
+
 
     protected $fillable = [
         'barang_id',
-        'jml_barang',
+        'jumlah_barang',
         'total_harga',
         'metode_pembayaran',
     ];

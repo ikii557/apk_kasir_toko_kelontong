@@ -12,8 +12,8 @@
                             <div class="card-body">
                                 <h3 class="card-title text-white">Produk terjual</h3>
                                 <div class="d-inline-block">
-                                    <h2 class="text-white">20</h2>
-                                    <p class="text-white mb-0">Jan - March 2019</p>
+                                    <h2 class="text-white">{{ $produkTerjual }}</h2>
+                                    <p class="text-white mb-0">Jan - March 2024</p>
                                 </div>
                                 <span class="float-right display-5 opacity-5"><i class="fa fa-shopping-cart"></i></span>
                             </div>
@@ -22,10 +22,10 @@
                     <div class="col-lg-4 col-sm-6">
                         <div class="card gradient-2">
                             <div class="card-body">
-                                <h3 class="card-title text-white">Stok Barang</h3>
+                                <h3 class="card-title text-white">Daftar Barang</h3>
                                 <div class="d-inline-block">
-                                    <h2 class="text-white">20</h2>
-                                    <p class="text-white mb-0">Jan - March 2019</p>
+                                    <h2 class="text-white">{{ $stokBarang }}</h2>
+                                    <p class="text-white mb-0">Jan - March 2024</p>
                                 </div>
                                 <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
                             </div>
@@ -34,10 +34,10 @@
                     <div class="col-lg-4 col-sm-6">
                         <div class="card gradient-3">
                             <div class="card-body">
-                                <h3 class="card-title text-white">costumer</h3>
+                                <h3 class="card-title text-white">Pendapatan</h3>
                                 <div class="d-inline-block">
-                                    <h2 class="text-white">4565</h2>
-                                    <p class="text-white mb-0">Jan - March 2019</p>
+                                    <h2 class="text-white">Rp.{{$transaksis}}</h2>
+                                    <p class="text-white mb-0">Jan - March 2024</p>
                                 </div>
                                 <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
                             </div>
