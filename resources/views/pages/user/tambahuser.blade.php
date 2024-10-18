@@ -7,7 +7,7 @@
 
         <div class="card">
             <div class="p-4 mt-4 me-4">
-            <form action="/store" method="POST">
+            <form action="/store/user" method="POST">
             @csrf
             <!-- Nama -->
             <div class="form-group">

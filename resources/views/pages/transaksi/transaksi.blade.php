@@ -2,17 +2,15 @@
 @section('content')
 
 
-                    <div class="card-body">
-                        <span>Data Transaksi</span>
-                    </div>
 
-                    <div class="row">
-                    <div class="col-lg-6 mt-4">
-                        <div class="card ">
+                        <div class="row">
+                            <div class="col-lg-6 mt-4">
+
+                            <div class="card ">
+                            <h4 class="p-4">Data Transaksi</h4>
                             <div class="card-body">
-                                <h4 class="card-title">Data Transaksi</h4>
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-striped verticle-middle">
+                                    <table class="table table-bordered">
                                         <thead>
                                             <tr>
                                                 <th scope="col">No</th>
@@ -29,8 +27,8 @@
                                             <tr>
                                                 <td>{{$no +1}}</td>
                                                 <td>{{$transaksi->barang->nama_barang}}</td>
-                                                <td><span class="label gradient-1 btn-rounded">{{$transaksi->jml_barang}}</span></td>
-                                                <td><span class="label gradient-3 btn-rounded">{{$transaksi->total_harga}}</span></td>
+                                                <td><span class="label gradient-1 btn-rounded">{{$transaksi->jumlah_barang}}</span></td>
+                                                <td><span class="label gradient-3 btn-rounded">Rp.{{$transaksi->total_harga}}</span></td>
                                                 <td>{{$transaksi->metode_pembayaran}}</td>
 
                                                 <td><span><a href="/edittransaksi" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="/hapus" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
@@ -74,38 +72,56 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-lg-6 mt-4">
+                    <div class="col-lg-6 mt-4">
                         <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Tambah Transaksi</h4>
-                                <div class="table-responsive">
-                                <form action="" method="POST">
+                            <h4 class="p-4">Tambah Transaksi</h4>
+                            <div class="p-3  me-4">
+                                <form action="/store/transaksi" method="post">
                                     @csrf
 
-                                    <div>
-                                        <label for="barang_id">Pilih Barang</label>
-                                        <select name="barang_id" id="barang_id" required>
-                                            <option value="">-- Pilih Barang --</option>
-
+                                    <!-- Nama Barang -->
+                                    <div class="form-group">
+                                        <label for="barang_id">Nama Barang:</label>
+                                        <select name="barang_id" id="barang_id" class="form-control" required>
+                                            <option value="" disabled selected>Pilih Barang</option>
+                                            @foreach ($barangs as $produk)
+                                                <option {{ old('barang_id') == $produk->id ? 'selected' : '' }} value="{{ $produk->id }}">{{ $produk->nama_barang }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
-                                    <div>
-                                        <label for="jml_barang">Jumlah Barang</label>
-                                        <input type="number" name="jml_barang" id="jml_barang" min="1" required>
+                                    <!-- Jumlah Barang -->
+                                    <div class="form-group">
+                                        <label for="jumlah_barang">Jumlah Barang:</label>
+                                        <input type="text" value="{{ old('jumlah_barang') }}" name="jumlah_barang" id="jumlah_barang" class="form-control" required>
                                     </div>
 
-                                    <div>
-                                        <label for="metode_pembayaran">Metode Pembayaran</label>
-                                        <input type="text" name="metode_pembayaran" id="metode_pembayaran" required>
+                                    <!-- Total Harga -->
+                                    <div class="form-group">
+                                        <label for="total_harga">Total Harga:</label>
+                                        <input type="text" value="{{ old('total_harga') }}" name="total_harga" id="total_harga" class="form-control" required>
                                     </div>
 
-                                    <button type="submit">Tambah Transaksi</button>
+                                    <!-- Metode Pembayaran -->
+                                    <div class="form-group">
+                                        <label for="metode_pembayaran">Metode Pembayaran:</label>
+                                        <select name="metode_pembayaran" id="metode_pembayaran" class="form-control" required>
+                                            <option value="" disabled selected>Pilih Metode Pembayaran</option>
+                                            <option value="tunai" {{ old('metode_pembayaran') == 'tunai' ? 'selected' : '' }}>Tunai</option>
+                                            <option value="debit" {{ old('metode_pembayaran') == 'debit' ? 'selected' : '' }}>Debit</option>
+                                            <option value="kredit" {{ old('metode_pembayaran') == 'kredit' ? 'selected' : '' }}>Kredit</option>
+                                        </select>
+                                    </div>
+
+
+                                    <!-- Submit button -->
+                                    <button type="submit" class="btn btn-primary">Tambah Transaksi</button>
                                 </form>
-
-                                </div>
                             </div>
                         </div>
-                    </div> -->
                     </div>
+                    </div>
+
+
+                    
 @endsection

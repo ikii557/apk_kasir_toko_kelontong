@@ -28,14 +28,14 @@ class Controller extends BaseController
             "email"=> "required",
             "password"=> "required",
             ]);
-            $storeDataUser=([
-                "name"=> $request->name,
-                "no_hp"=> $request->no_hp,
-                "email"=> $request->email,
-                "password"=> bcrypt($request->password),
-            ]);
-            User::create(array_merge($request->all(),$request->all()));
-            return redirect("")->with("success","storeDataUser");
+            $storeDataUser =[
+                'nama' => $request->nama,
+                'no_hp'  => $request->no_hp,
+                'email'=> $request->email,
+                'password'=> bcrypt($request->password),
+            ];
+            User::create($storeDataUser);
+        return redirect('/pages.user.profile');
     }
     public function edit($id)
     {
@@ -52,20 +52,6 @@ class Controller extends BaseController
         'email'=> 'required|unique',
         'password'=> 'required',
     ]);
-    $dataUser = User::findOrFail($id);
-
-        if ($request->hasFile('foto')){
-            if ($dataUser->foto && file_exists(public_path('foto/'. $dataUser->foto))){
-                unlink(public_path('foto/'. $dataUser->foto));
-            }
-
-            $file = $request->file('foto');
-            $fileName = time() .'.'. $file->getClientOriginalExtension();
-            $file->move(public_path('foto'), $fileName);
-        }else{
-            $fileName = $dataUser->foto;
-        }
-
     $updateDataSiswa =[
         'nama' => $request->nama,
         'no_hp'  => $request->no_hp,
