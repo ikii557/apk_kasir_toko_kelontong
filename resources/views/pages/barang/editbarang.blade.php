@@ -6,29 +6,32 @@
 
         <div class="card">
             <div class="p-4 mt-4 me-4">
-            <form action="" method="POST">
+            <form action="/updatebarang/{{$dataBarang->id}}" method="POST">
             @csrf
+            <div class=" mb-3">
+                <span class="" id="basic-addon1">Nama Barang</span>
+                <input name="nama_barang" value="{{$dataBarang->nama_barang}}" type="text" class="form-control" placeholder="masukan nama_barang" aria-label="nama_barang" aria-describedby="basic-addon1">
+                @error('nama_barang')
+                <p class="text-danger">{{$message}}</p>
+                    @enderror
+                </div>
+                <div class=" mb-3">
+                    <span class="" id="basic-addon1">Harga barang</span>
+                    <input name="harga_barang" value="{{$dataBarang->harga_barang}}" type="text" class="form-control" placeholder="masukan harga_barang" aria-label="harga_barang" aria-describedby="basic-addon2">
+                    @error('harga_barang')
+                        <p class="text-danger">{{$message}}</p>
+                    @enderror
+                </div>
+                <div class=" mb-3">
+                    <span class="" id="basic-addon1">Stok Barang</span>
+                    <input name="stok_barang" value="{{$dataBarang->stok_barang}}" type="text" class="form-control" placeholder="masukan stok_barang" aria-label="stok_barang" aria-describedby="basic-addon3">
+                    @error('stok_barang')
+                        <p class="text-danger">{{$message}}</p>
+                    @enderror
+                </div>
 
-            <!-- Nama Barang -->
-            <div class="form-group">
-                <label for="nama_barang">Nama Barang:</label>
-                <input type="text" name="nama_barang" id="nama_barang" class="form-control" required>
-            </div>
 
-            <!-- Harga -->
-            <div class="form-group">
-                <label for="harga">Harga:</label>
-                <input type="number" name="harga" id="harga" class="form-control" required>
-            </div>
-
-            <!-- Stok Barang -->
-            <div class="form-group">
-                <label for="stok">Stok Barang:</label>
-                <input type="number" name="stok" id="stok" class="form-control" required>
-            </div>
-
-            <!-- Submit button -->
-            <button type="submit" class="btn btn-primary">Tambah Barang</button>
+                <button type="submit" class="btn btn-primary">Edit Barang</button>
         </form>
             </div>
         </div>

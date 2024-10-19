@@ -61,12 +61,8 @@
                                             <td>{{ $barang->stok_barang }}</td>
                                             <td>Rp.{{ $barang->harga_barang }}</td>
                                             <td>
-                                                <a href="" class="btn btn-warning">Edit</a>
-                                                <form action="" method="POST" style="display:inline-block;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-danger">Hapus</button>
-                                                </form>
+                                                <a href="/editbarang/{{$barang->id}}" class="btn btn-warning">Edit</a>
+                                                <a href="/destroy/{{$barang->id}}" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
                                     @endforeach
