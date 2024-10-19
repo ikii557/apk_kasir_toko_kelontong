@@ -26,12 +26,13 @@
 
                                             <tr>
                                                 <td>{{$no +1}}</td>
-                                                <td>{{$transaksi->barang->nama_barang}}</td>
+                                                <td>{{$transaksi->barang_id}}</td>
                                                 <td><span class="label gradient-1 btn-rounded">{{$transaksi->jumlah_barang}}</span></td>
                                                 <td><span class="label gradient-3 btn-rounded">Rp.{{$transaksi->total_harga}}</span></td>
                                                 <td>{{$transaksi->metode_pembayaran}}</td>
 
-                                                <td><span><a href="/edittransaksi" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="/hapus" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
+                                                <td><span><a href="/edittransaksi/{{$transaksi->id}}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a>
+                                                <a href="/destroy/{{$transaksi->id}}" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
                                                 </td>
 
                                         </tr>

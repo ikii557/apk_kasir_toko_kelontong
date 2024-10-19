@@ -23,7 +23,7 @@ class Controller extends BaseController
 
     public function store(Request $request){
         $this->validate($request,[
-            "name"=> "required",
+            "nama"=> "required",
             "no_hp"=> "required",
             "email"=> "required",
             "password"=> "required",
@@ -35,7 +35,7 @@ class Controller extends BaseController
                 'password'=> bcrypt($request->password),
             ];
             User::create($storeDataUser);
-        return redirect('/pages.user.profile');
+        return redirect('/profile');
     }
     public function edit($id)
     {

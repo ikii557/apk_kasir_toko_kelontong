@@ -39,9 +39,9 @@ Route::get('/', [DasboardController::class,'index'] );
 Route::get('/barang', [BarangController::class,'index'] );
 Route::get('/tambahbarang', [BarangController::class,'create'] );
 Route::post('/store/barang', [BarangController::class,'store']) ;
-Route::get('/editbarang', function () {
-    return view('pages.barang.editbarang');
-});
+Route::get('/editbarang/{id}',[BarangController::class,'edit']) ;
+Route::post('/updatebarang/{id}', [BarangController::class,'update']);
+Route::get('/destroy/{id}', [BarangController::class,'destroy']);
 
 
 
@@ -58,6 +58,11 @@ Route::post('/store/user', [Controller::class,'store'] );
 Route::get('/transaksi', [TransaksiController::class, 'index']);
 Route::get('/tambahtransaksi', [TransaksiController::class, 'create']);
 Route::post('/store/transaksi', [TransaksiController::class, 'store']);
+Route::get('/edittransaksi/{id}',[TransaksiController::class,'edit']) ;
+Route::post('/updatetransaksi/{id}', [TransaksiController::class,'update']);
+Route::get('/destroy/{id}', [TransaksiController::class,'destroy']);
+
+
 
 
 
