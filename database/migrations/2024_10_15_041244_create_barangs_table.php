@@ -15,7 +15,7 @@ return new class extends Migration
         $table->id();
         $table->string('nama_barang');
         $table->bigInteger('stok_barang');
-        $table->decimal('harga_barang', 10, 3);
+        $table->bigInteger('harga_barang');
         $table->timestamps();
         });
     }

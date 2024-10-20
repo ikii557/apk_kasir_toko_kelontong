@@ -41,8 +41,14 @@
                 <div class="col-lg-6 mt-4">
                 <div class="card">
                     <div class="p-2 mt-4 me-4">
-                        <h1>Daftar Barang</h1>
 
+                        <h1>Daftar Barang</h1>
+                        <form action="/barang" method="get">
+                            <div class="input-group">
+                                <input type="text"  class="text-control" name=search value="{{request('search')}}">
+                                <button class="btn btn-primary">cari</button>
+                            </div>
+                        </form>
                             <table class="table table-bordered mt-2">
                                 <thead>
                                     <tr>
@@ -56,7 +62,7 @@
                                 <tbody>
                                     @foreach($barangs as $no=> $barang)
                                     <tr>
-                                            <td>{{ $no +1}}</td>
+                                            <td>{{ $barangs->firstItem() + $no}}</td>
                                             <td>{{ $barang->nama_barang }}</td>
                                             <td>{{ $barang->stok_barang }}</td>
                                             <td>Rp.{{ $barang->harga_barang }}</td>
@@ -68,6 +74,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div>
+                                {{$barangs->links()}}
+                            </div>
                         </div>
                     </div>
                 </div>
