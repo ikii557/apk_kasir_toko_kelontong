@@ -9,6 +9,9 @@
                         <a class="" href="/" aria-expanded="false">
                             <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
                         </a>
+                        <a class="has-arrow" href="/datatable" aria-expanded="false">
+                            <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Data table</span>
+                        </a>
                     </li>
                     <!-- <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -36,8 +39,6 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="/transaksi">transaksi</a></li>
-                            <li><a href="/edittransaksi">edit transaksi</a></li>
-                            <li><a href="/tambahtransaksi">tambah transaksi</a></li>
                         </ul>
                     </li>
                     <li>
@@ -46,8 +47,6 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="/barang">barang</a></li>
-                            <li><a href="/editbarang">edit barang</a></li>
-                            <li><a href="/tambahbarang">tambah barang</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">Pages</li>

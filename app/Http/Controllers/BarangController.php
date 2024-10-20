@@ -7,8 +7,18 @@ use Illuminate\Http\Request;
 class BarangController extends Controller
 {
     // Display all items
-    public function index(){
-        $barangs = Barang::all();
+    public function index(Request $request){
+        if ($request->search) {
+            $barangs = Barang::where(
+                                  "nama_barang","LIKE","%". $request->search ."%")
+                            ->orWhere(
+                                  "stok_barang","LIKE","%". $request->search ."%")
+                            ->orWhere(
+                                "harga_barang","LIKE","%". $request->search ."%")
+                            ->paginate(8);
+                }else{
+                  $barangs = Barang::paginate(8);
+        }
         return view("pages.barang.barang", compact("barangs"));
     }
     public function create(){

@@ -24,7 +24,7 @@
 </head>
 <body>
     <div class="container ">
-        <div class="auth-form">
+        <div class="auth-form border">
             <h4 class="text-center mb-4">Log In Untuk Masuk</h4>
             <form action="/store/login" method="post" class="mt-4">
                 @csrf

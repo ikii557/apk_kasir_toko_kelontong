@@ -32,7 +32,9 @@ Route::middleware(['auth'])->group(function(){
 
     // dasboard
 Route::get('/', [DasboardController::class,'index'] );
-
+Route::get('/datatable', function () {
+    return view('pages.data.datatable');
+});
 
 
 // barang

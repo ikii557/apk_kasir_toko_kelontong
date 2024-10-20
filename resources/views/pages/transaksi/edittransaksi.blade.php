@@ -6,7 +6,7 @@
 
         <div class="card">
             <div class="p-3 mt-4 me-4">
-            <form action="" method="POST">
+            <form action="/updatetransaksi/{{$transaksis->id}}" method="POST">
             @csrf
 
             <div class="form-group">
@@ -53,6 +53,33 @@
 
 
         </form>
+        <script>
+                                document.getElementById('barang_id').addEventListener('change', function() {
+                                    let selectedOption = this.options[this.selectedIndex];
+                                    let hargaBarang = selectedOption.getAttribute('data-harga');
+                                    let jumlahBarang = document.getElementById('jumlah_barang').value;
+                                    let total = hargaBarang * jumlahBarang || 0;
+
+                                    document.getElementById('total_harga').value = formatCurrency(total);
+                                });
+
+                                document.getElementById('jumlah_barang').addEventListener('input', function() {
+                                    let hargaBarang = document.getElementById('barang_id').selectedOptions[0].getAttribute('data-harga');
+                                    let jumlahBarang = this.value;
+                                    let total = hargaBarang * jumlahBarang || 0;
+
+                                    document.getElementById('total_harga').value = formatCurrency(total);
+                                });
+
+                                // Function to format number as currency "Rp." with thousands separator and two decimals
+                                function formatCurrency(amount) {
+                                    return 'Rp. ' + new Intl.NumberFormat('id-ID', {
+                                        style: 'decimal',
+                                        minimumFractionDigits: 0,
+                                        maximumFractionDigits: 0
+                                    }).format(amount);
+                                }
+                            </script>
             </div>
         </div>
     </div>
