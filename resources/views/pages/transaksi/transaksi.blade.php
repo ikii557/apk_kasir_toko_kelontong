@@ -77,7 +77,7 @@
                         <div class="card">
                             <h4 class="p-4">Tambah Transaksi</h4>
                             <div class="p-3  me-4">
-                            <form id="/store/transaksi" method="POST">
+                            <form id="{{ route('transaksi.store') }}" method="get">
                                 @csrf
 
                                 <!-- Nama Barang -->

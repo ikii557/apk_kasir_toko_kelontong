@@ -53,15 +53,15 @@
                                 <div class="card">
                                     <div class="card-body pb-0 d-flex justify-content-between">
                                         <div>
-                                            <h4 class="mb-1">Product Sales</h4>
-                                            <p>Total Earnings of the Month</p>
-                                            <h3 class="m-0">$ 12,555</h3>
+                                            <h4 class="mb-1">Pendapatan  Penjualan</h4>
+                                            <p>total barang terjual dalam bulan ini</p>
+                                            <h3 class="m-0">Rp.30050</h3>
                                         </div>
                                         <div>
                                             <ul>
-                                                <li class="d-inline-block mr-3"><a class="text-dark" href="#">Day</a></li>
-                                                <li class="d-inline-block mr-3"><a class="text-dark" href="#">Week</a></li>
-                                                <li class="d-inline-block"><a class="text-dark" href="#">Month</a></li>
+                                                <li class="d-inline-block mr-3"><a class="text-dark" href="#">harian</a></li>
+                                                <li class="d-inline-block mr-3"><a class="text-dark" href="#">mingguan</a></li>
+                                                <li class="d-inline-block"><a class="text-dark" href="#">bulanan</a></li>
                                             </ul>
                                         </div>
                                     </div>
