@@ -67,7 +67,7 @@ Route::post('/store/user', [Controller::class,'store'] );
 // transaksi
 Route::get('/transaksi', [TransaksiController::class, 'index']);
 Route::get('/tambahtransaksi', [TransaksiController::class, 'create']);
-Route::get('/store/transaksi', [TransaksiController::class, 'store'])->name('transaksi.store');
+Route::post('/store/transaksi', [TransaksiController::class, 'store']);
 Route::get('/edittransaksi/{id}',[TransaksiController::class,'edit']) ;
 Route::post('/updatetransaksi/{id}', [TransaksiController::class,'update']);
 Route::get('/destroy/{id}', [TransaksiController::class,'destroy']);

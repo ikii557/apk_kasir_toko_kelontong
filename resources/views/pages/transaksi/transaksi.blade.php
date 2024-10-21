@@ -8,6 +8,14 @@
 
                             <div class="card ">
                             <h4 class="p-4">Data Transaksi</h4>
+                            <div class="p-4 me-4">
+                            <form action="/transaksi" method="get">
+                                <div class="input-group">
+                                    <input type="text"  class="text-control p-2" name=search value="{{request('search')}}">
+                                    <button class="btn btn-primary">cari</button>
+                                </div>
+                            </form>
+                            </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
@@ -25,10 +33,10 @@
                                             @foreach ($transaksis as $no=> $transaksi )
 
                                             <tr>
-                                                <td>{{$no +1}}</td>
-                                                <td>{{$transaksi->barang_id}}</td>
+                                                <td>{{$transaksis->firstItem() + $no}}</td>
+                                                <td>{{$transaksi->barang->nama_barang}}</td>
                                                 <td><span class="label gradient-1 btn-rounded">{{$transaksi->jumlah_barang}}</span></td>
-                                                <td><span class="label gradient-3 btn-rounded">Rp.{{$transaksi->total_harga}}</span></td>
+                                                <td><span class="label gradient-3 btn-rounded">{{$transaksi->total_harga}}</span></td>
                                                 <td>{{$transaksi->metode_pembayaran}}</td>
 
                                                 <td><span><a href="/edittransaksi/{{$transaksi->id}}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a>
@@ -69,6 +77,9 @@
                                             </tr> -->
                                         </tbody>
                                     </table>
+                                    <div>
+                                {{$transaksis->links()}}
+                            </div>
                                 </div>
                             </div>
                         </div>
@@ -77,13 +88,13 @@
                         <div class="card">
                             <h4 class="p-4">Tambah Transaksi</h4>
                             <div class="p-3  me-4">
-                            <form id="{{ route('transaksi.store') }}" method="get">
+                            <form action="/store/transaksi" id="/store/transaksi" method="post">
                                 @csrf
 
                                 <!-- Nama Barang -->
                                 <div class="form-group">
                                     <label for="barang_id">Nama Barang:</label>
-                                    <select name="barang_id" id="barang_id" class="form-control" required>
+                                    <select name="barang_id" id="barang_id" class="form-control" >
                                         <option value="" disabled selected>Pilih Barang</option>
                                         @foreach ($barangs as $produk)
                                             <option
@@ -100,19 +111,19 @@
                                 <!-- Jumlah Barang -->
                                 <div class="form-group">
                                     <label for="jumlah_barang">Jumlah Barang:</label>
-                                    <input type="number" value="{{ old('jumlah_barang') }}" name="jumlah_barang" id="jumlah_barang" class="form-control" required>
+                                    <input type="number" value="{{ old('jumlah_barang') }}" name="jumlah_barang" id="jumlah_barang" class="form-control" >
                                 </div>
 
                                 <!-- Total Harga -->
                                     <div class="form-group">
                                         <label for="total_harga">Total Harga:</label>
-                                        <input type="text"  value="{{ old('total_harga') }}" name="total_harga" id="total_harga" class="form-control" readonly required>
+                                        <input type="text"  value="{{ old('total_harga') }}" name="total_harga" id="total_harga" class="form-control" readonly >
                                     </div>
 
                                 <!-- Metode Pembayaran -->
                                 <div class="form-group">
                                     <label for="metode_pembayaran">Metode Pembayaran:</label>
-                                    <select name="metode_pembayaran" id="metode_pembayaran" class="form-control" required>
+                                    <select name="metode_pembayaran" id="metode_pembayaran" class="form-control" >
                                         <option value="" disabled selected>Pilih Metode Pembayaran</option>
                                         <option value="tunai" {{ old('metode_pembayaran') == 'tunai' ? 'selected' : '' }}>Tunai</option>
                                         <option value="debit" {{ old('metode_pembayaran') == 'debit' ? 'selected' : '' }}>Debit</option>

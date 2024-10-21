@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('barang_id');
             $table->bigInteger('jumlah_barang');
-            $table->bigInteger('total_harga');
+            $table->string('total_harga');
             $table->enum('metode_pembayaran', ['tunai','debit','kredit']);
             $table->timestamps();
         });
