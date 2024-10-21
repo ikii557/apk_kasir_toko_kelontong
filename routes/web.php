@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::get('/',function(){
+    return view('pages.dasboard.index2');
+});
+
 Route::middleware(['guest'])->group(function () {
     // register
     Route::get("/register", [AuthController::class,'register'] );
@@ -28,10 +33,13 @@ Route::middleware(['guest'])->group(function () {
 
 });
 
+
+
+
 Route::middleware(['auth'])->group(function(){
 
     // dasboard
-Route::get('/', [DasboardController::class,'index'] );
+Route::get('/index', [DasboardController::class,'index'] );
 Route::get('/datatable', function () {
     return view('pages.data.datatable');
 });
@@ -59,7 +67,7 @@ Route::post('/store/user', [Controller::class,'store'] );
 // transaksi
 Route::get('/transaksi', [TransaksiController::class, 'index']);
 Route::get('/tambahtransaksi', [TransaksiController::class, 'create']);
-Route::post('/store/transaksi', [TransaksiController::class, 'store']);
+Route::get('/store/transaksi', [TransaksiController::class, 'store'])->name('transaksi.store');
 Route::get('/edittransaksi/{id}',[TransaksiController::class,'edit']) ;
 Route::post('/updatetransaksi/{id}', [TransaksiController::class,'update']);
 Route::get('/destroy/{id}', [TransaksiController::class,'destroy']);

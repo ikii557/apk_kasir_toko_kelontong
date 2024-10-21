@@ -46,40 +46,15 @@
                     <option value="debit" {{ $transaksis->metode_pembayaran  == 'debit' ? 'selected' : '' }}>Debit</option>
                     <option value="kredit" {{ $transaksis->metode_pembayaran  == 'kredit' ? 'selected' : '' }}>Kredit</option>
                 </select>
-
+            </div>
             <!-- Submit button -->
-            <button type="submit" class="btn btn-primary">edit Transaksi</button>
+
+            <button type="submit" class="btn btn-primary ">edit Transaksi</button>
 
 
 
         </form>
-        <script>
-                                document.getElementById('barang_id').addEventListener('change', function() {
-                                    let selectedOption = this.options[this.selectedIndex];
-                                    let hargaBarang = selectedOption.getAttribute('data-harga');
-                                    let jumlahBarang = document.getElementById('jumlah_barang').value;
-                                    let total = hargaBarang * jumlahBarang || 0;
-
-                                    document.getElementById('total_harga').value = formatCurrency(total);
-                                });
-
-                                document.getElementById('jumlah_barang').addEventListener('input', function() {
-                                    let hargaBarang = document.getElementById('barang_id').selectedOptions[0].getAttribute('data-harga');
-                                    let jumlahBarang = this.value;
-                                    let total = hargaBarang * jumlahBarang || 0;
-
-                                    document.getElementById('total_harga').value = formatCurrency(total);
-                                });
-
-                                // Function to format number as currency "Rp." with thousands separator and two decimals
-                                function formatCurrency(amount) {
-                                    return 'Rp. ' + new Intl.NumberFormat('id-ID', {
-                                        style: 'decimal',
-                                        minimumFractionDigits: 0,
-                                        maximumFractionDigits: 0
-                                    }).format(amount);
-                                }
-                            </script>
+        
             </div>
         </div>
     </div>

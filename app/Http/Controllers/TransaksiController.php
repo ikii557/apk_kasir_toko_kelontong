@@ -40,6 +40,7 @@ class TransaksiController extends Controller
             "metode_pembayaran" => $request->metode_pembayaran,
         ];
 
+        dd($storeDataTransaksi);
         Transaksi::create($storeDataTransaksi);
         return redirect("/transaksi")->with("success","transaksi selesai");
     }
