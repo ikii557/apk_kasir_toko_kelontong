@@ -67,7 +67,7 @@
                                             <td>{{ $barang->stok_barang }}</td>
                                             <td>Rp.{{ $barang->harga_barang }}</td>
                                             <td>
-                                                <a href="/editbarang/{{$barang->id}}" class="btn btn-warning">Edit</a>
+                                                <a href="/editbarang/{{$barang->id}}" class="btn btn-info">Edit</a>
                                                 <a href="/destroy/{{$barang->id}}" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>

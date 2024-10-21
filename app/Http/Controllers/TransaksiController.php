@@ -8,9 +8,22 @@ use Illuminate\Http\Request;
 class TransaksiController extends Controller
 {
     // Display all transactions
-    public function index(){
+    public function index(Request $request){
         $barangs = Barang::all();
-        $transaksis = Transaksi::all();
+        if ($request->search) {
+
+            $transaksis = Transaksi::whereHas('barang', function ($query) use ($request) {
+                    $query->where('nama_barang', 'LIKE', '%' . $request->search . '%');
+                })
+
+                ->orWhere('jumlah_barang', 'LIKE', '%' . $request->search . '%')
+                                ->orWhere('total_harga', 'LIKE', '%' . $request->search . '%')
+                ->orWhere('metode_pembayaran', 'LIKE', '%' . $request->search . '%')
+                ->paginate(5);
+        } else {
+
+            $transaksis = Transaksi::paginate(5);
+        }
 
         return view("pages.transaksi.transaksi", compact("transaksis","barangs"));
     }
@@ -30,17 +43,18 @@ class TransaksiController extends Controller
         ],[
             "barang_id.required"        => "barang harus di isi ",
             "jumlah_barang.required"    => "jumlah harus di isi ",
-            "total_harga.required"      => "totoal  nya harus di isi",
+            "total_harga.required"      => "total  nya harus di isi",
             "metode_pembayaran.required"=> "pilih metode pembayaran yang harus di isi",
         ]);
+
+
+
         $storeDataTransaksi=[
             "barang_id"         => $request->barang_id,
             "jumlah_barang"     => $request->jumlah_barang,
             "total_harga"       => $request->total_harga,
             "metode_pembayaran" => $request->metode_pembayaran,
         ];
-
-        dd($storeDataTransaksi);
         Transaksi::create($storeDataTransaksi);
         return redirect("/transaksi")->with("success","transaksi selesai");
     }
