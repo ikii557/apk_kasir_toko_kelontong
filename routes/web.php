@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BarangController;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\DasboardController;
 use App\Http\Controllers\TransaksiController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +61,6 @@ Route::get('/profile', function () {
     return view('pages.user.profile');
 });
 Route::get('/editprofile', [Controller::class,'edit']);
-Route::get('/tambahuser', [Controller::class,'create'] );
 Route::post('/store/user', [Controller::class,'store'] );
 
 

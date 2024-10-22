@@ -36,11 +36,15 @@ class TransaksiController extends Controller
 
     public function store(Request $request){
         $request->validate([
+            "no_transaksi"      => "required",
+            "tanggal_transaksi" => "required",
             "barang_id"         => "required",
             "jumlah_barang"     => "required",
             "total_harga"       => "required",
             "metode_pembayaran" => "required",
         ],[
+            "no_transaksi.required"     => "nomor harus di isi",
+            "tanggal_transaksi.required"=> "tanggal harus di isi",
             "barang_id.required"        => "barang harus di isi ",
             "jumlah_barang.required"    => "jumlah harus di isi ",
             "total_harga.required"      => "total  nya harus di isi",
@@ -50,6 +54,8 @@ class TransaksiController extends Controller
 
 
         $storeDataTransaksi=[
+            "no_transaksi"      => $request->no_transaksi,
+            "tanggal_transaksi" => $request->tanggal_transaksi,
             "barang_id"         => $request->barang_id,
             "jumlah_barang"     => $request->jumlah_barang,
             "total_harga"       => $request->total_harga,
