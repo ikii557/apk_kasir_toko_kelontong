@@ -6,8 +6,8 @@
             <div class="row">
                 <div class="col-lg-6 mt-4">
                 <div class="card">
-                    <h2>Tambah Barang</h2>
-                        <div class="p-2 me-4">
+                    <div class="p-2 me-4">
+                            <h2>Tambah Barang</h2>
                             <form action="/store/barang" method="post">
                             @csrf
 

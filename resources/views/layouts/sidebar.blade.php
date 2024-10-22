@@ -6,7 +6,7 @@
                 <ul class="metismenu" id="menu">
                     <li class="nav-label">Dashboard</li>
                     <li>
-                        <a class="" href="/" aria-expanded="false">
+                        <a class="" href="/index" aria-expanded="false">
                             <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
                         </a>
                         <!-- <a class="has-arrow" href="/datatable" aria-expanded="false">
@@ -56,7 +56,7 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="/profile">Profile</a></li>
-                            <li><a href="/tambahuser">Tambah Profile</a></li>
+                            <!-- <li><a href="/tambahadmin">Tambah admin</a></li> -->
                             <li><a href="/logout">Logout</a></li>
                         </ul>
                     </li>

@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Transaksi;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Barang extends Model
 {
@@ -14,7 +15,7 @@ class Barang extends Model
         "harga_barang",
     ];
 
-    public function Transaksi()
+    public function DetailTransaksi()
     {
         return $this->hasMany(Transaksi::class);
     }

@@ -2,17 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Barang;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Transaksi extends Model
 {
     use HasFactory;
 
-    // Specify the correct table name if it differs from the default pluralized form
-
-
     protected $fillable = [
+        'no_transaksi',
+        'tanggal_transaksi',
         'barang_id',
         'jumlah_barang',
         'total_harga',

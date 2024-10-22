@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Barang;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use App\Models\DetailTransaksi;
 
 class DasboardController extends Controller
 {
@@ -13,7 +14,7 @@ class DasboardController extends Controller
         $produkTerjual = Transaksi::count();
         $stokBarang = Barang::where('stok_barang', '>', 0)->count();
         $transaksis = Transaksi::sum('total_harga');
-        
+
         return view('pages.dasboard.index',compact('produkTerjual', 'stokBarang', 'transaksis'));
     }
 }
