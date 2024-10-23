@@ -30,14 +30,14 @@
                 </div>
 
 
-            </div>
+             </div>
         </div>
 
         <div class="card">
             <h4 class="p-4">Tambah detail  Transaksi</h4>
-            <div class="p-3 me-4">
+                    <div class="p-3 me-4">
 
-                    @csrf
+
                     <!-- Transaction Items -->
                     <div id="item-container">
                         <div class="item-group">

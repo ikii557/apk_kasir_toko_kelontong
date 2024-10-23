@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('no_transaksi');
             $table->date('tanggal_transaksi');
-            $table->string('kasir');
+            $table->unsignedBigInteger('kasir');
             $table->unsignedBigInteger('barang_id');
             $table->bigInteger('jumlah_barang');
             $table->string('total_harga');

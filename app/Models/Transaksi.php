@@ -13,6 +13,7 @@ class Transaksi extends Model
     protected $fillable = [
         'no_transaksi',
         'tanggal_transaksi',
+        'kasir',
         'barang_id',
         'jumlah_barang',
         'total_harga',
@@ -23,5 +24,10 @@ class Transaksi extends Model
     public function barang()
     {
         return $this->belongsTo(Barang::class, 'barang_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'kasir');
     }
 }
