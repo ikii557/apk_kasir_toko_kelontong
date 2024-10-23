@@ -60,7 +60,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             // Redirect ke dashboard setelah login sukses
-            return redirect()->intended('/');
+            return redirect()->intended('/index');
         } else {
             // Redirect kembali ke login dengan pesan error jika gagal
             return back()->withErrors([
@@ -68,7 +68,7 @@ class AuthController extends Controller
             ])->onlyInput('email');
         }
     }
-    
+
 
     public function logout(Request $request){
         Auth::logout();

@@ -23,6 +23,9 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">No</th>
+                                                <th scope="col">No transaksi</th>
+                                                <th scope="col">tanggal transaksi</th>
+                                                <th scope="col">Nama Kasir</th>
                                                 <th scope="col">Nama Barang</th>
                                                 <th scope="col">Jumlah Barang</th>
                                                 <th scope="col">Harga</th>
@@ -35,9 +38,12 @@
 
                                             <tr>
                                                 <td>{{$transaksis->firstItem() + $no}}</td>
+                                                <td>{{$transaksi->no_transaksi}}</td>
+                                                <td>{{$transaksi->tanggal_transaksi}}</td>
+                                                <td>{{Auth::user()->nama}}</td>
                                                 <td>{{$transaksi->barang->nama_barang}}</td>
                                                 <td><span class="label gradient-1 btn-rounded">{{$transaksi->jumlah_barang}}</span></td>
-                                                <td><span class="label gradient-3 btn-rounded">{{$transaksi->total_harga}}</span></td>
+                                                <td><span class="label gradient-3 btn-rounded">Rp.{{$transaksi->total_harga}}</span></td>
                                                 <td>{{$transaksi->metode_pembayaran}}</td>
 
                                                 <td><span><a href="/edittransaksi/{{$transaksi->id}}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a>
