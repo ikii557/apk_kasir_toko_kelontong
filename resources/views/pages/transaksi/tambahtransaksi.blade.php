@@ -27,6 +27,15 @@
                     <label for="kasir">Kasir (Admin):</label>
                     <input type="text" name="kasir" class="form-control" value="{{Auth::user()->nama}}" readonly>
                 </div>
+                <div class="form-group">
+                    <label for="metode_pembayaran">Metode Pembayaran:</label>
+                    <select name="metode_pembayaran" id="metode_pembayaran" class="form-control" required>
+                        <option value="" disabled selected>Pilih Metode Pembayaran</option>
+                        <option value="tunai" {{ old('metode_pembayaran') == 'tunai' ? 'selected' : '' }}>Tunai</option>
+                        <option value="debit" {{ old('metode_pembayaran') == 'debit' ? 'selected' : '' }}>Debit</option>
+                        <option value="kredit" {{ old('metode_pembayaran') == 'kredit' ? 'selected' : '' }}>Kredit</option>
+                    </select>
+                </div>
 
              </div>
         </div>
@@ -71,15 +80,7 @@
                 <button type="button" id="add-item" class="btn btn-secondary">Tambah Barang</button>
 
                 <!-- Metode Pembayaran -->
-                <div class="form-group">
-                    <label for="metode_pembayaran">Metode Pembayaran:</label>
-                    <select name="metode_pembayaran" id="metode_pembayaran" class="form-control" required>
-                        <option value="" disabled selected>Pilih Metode Pembayaran</option>
-                        <option value="tunai" {{ old('metode_pembayaran') == 'tunai' ? 'selected' : '' }}>Tunai</option>
-                        <option value="debit" {{ old('metode_pembayaran') == 'debit' ? 'selected' : '' }}>Debit</option>
-                        <option value="kredit" {{ old('metode_pembayaran') == 'kredit' ? 'selected' : '' }}>Kredit</option>
-                    </select>
-                </div>
+
 
                 <!-- Submit button -->
                 <button type="submit" class="btn btn-primary">Tambah Transaksi</button>

@@ -30,20 +30,32 @@
                             @foreach($transaksis->detailTransaksi as $detail)
                             <tr>
                                 <td>{{ $detail->barang->nama_barang }}</td>
-                                <td>{{ $detail->jumlah }}</td>
-                                <td>Rp. {{ number_format($detail->barang->harga, 0, ',', '.') }}</td>
+                                <td>{{ $detail->jumlah_barang }}</td>
+                                <td>Rp. {{ number_format($detail->barang->harga_barang, 0, ',', '.') }}</td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
                     <hr>
                     <div class="text-end">
-                        <p><strong>Total Pembayaran:</strong> Rp. {{ number_format($transaksis->total_harga, 0, ',', '.') }}</p>
+                        <p><strong>Total Pembayaran:</strong> Rp. {{ $detailll }}</p>
                         <p><strong>Metode Pembayaran:</strong> {{ $transaksis->metode_pembayaran }}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="col-lg-9 mt-4">
+        <h4 class="p-2">data laporan</h4>
+        <div class="card">
+            <div class="p-2 mt-4 me-4">
+                <p>Lapporan penjualan hari ini   </p>
+
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
 @endsection

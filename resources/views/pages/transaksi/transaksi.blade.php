@@ -37,11 +37,11 @@
                                             @foreach ($transaksis as $no=> $transaksi )
 
                                             <tr>
-                                                <td>{{$transaksis->firstItem() + $no}}</td>
+                                                <td>{{$no +1}}</td>
                                                 <td>{{$transaksi->no_transaksi}}</td>
                                                 <td>{{$transaksi->tanggal_transaksi}}</td>
                                                 <td>{{Auth::user()->nama}}</td>
-                                                <td>{{$transaksi->barang->nama_barang}}</td>
+                                                <td>{{$transaksi->barang}}</td>
                                                 <td><span class="label gradient-1 btn-rounded">{{$transaksi->jumlah_barang}}</span></td>
                                                 <td><span class="label gradient-3 btn-rounded">Rp.{{$transaksi->total_harga}}</span></td>
                                                 <td>{{$transaksi->metode_pembayaran}}</td>
@@ -86,7 +86,7 @@
                                         </tbody>
                                     </table>
                                     <div>
-                                {{$transaksis->links()}}
+                                
                             </div>
                                 </div>
                             </div>

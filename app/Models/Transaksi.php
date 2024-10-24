@@ -14,17 +14,13 @@ class Transaksi extends Model
         'no_transaksi',
         'tanggal_transaksi',
         'kasir',
-        'barang_id',
-        'jumlah_barang',
-        'total_harga',
         'metode_pembayaran',
     ];
 
     // Define the relationship with the Barang model
-    public function barang()
-    {
-        return $this->belongsTo(Barang::class, 'barang_id');
-    }
+   public function detailtransaksi(){
+    return $this->hasMany(DetailTransaksi::class);
+   }
 
     public function user()
     {
