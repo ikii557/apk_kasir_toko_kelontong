@@ -5,64 +5,68 @@ use App\Models\User;
 use App\Models\Barang;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use App\Models\DetailTransaksi;
 use Illuminate\Support\Facades\Auth;
 
 class TransaksiController extends Controller
 {
     // Display all transactions
-    public function index(Request $request){
+    public function index(Request $request)
+    {
         $barangs = Barang::all();
-        if ($request->search) {
-
-            $transaksis = Transaksi::whereHas('barang', function ($query) use ($request) {
-                    $query->where('nama_barang', 'LIKE', '%' . $request->search . '%');
-                })
-
-                ->orWhere('jumlah_barang', 'LIKE', '%' . $request->search . '%')
-                                ->orWhere('total_harga', 'LIKE', '%' . $request->search . '%')
-                ->orWhere('metode_pembayaran', 'LIKE', '%' . $request->search . '%')
-                ->paginate(5);
-        } else {
-
-            $transaksis = Transaksi::paginate(5);
-        }
-
-        return view("pages.transaksi.transaksi", compact("transaksis","barangs"));
+        $transaksis = Transaksi::all();
+        $detailtransaksis = DetailTransaksi::all();
+        return view('pages.transaksi.transaksi', compact('transaksis', 'barangs','detailtransaksis'));
     }
+
 
     public function create(){
         $barangs = Barang::all();
         $transaksis = Transaksi::all();
         return view("pages.transaksi.tambahtransaksi", compact("transaksis","barangs"));
     }
-
-
-
-    public function store(Request $request){
-        dd($request->all());
+    // Store new transaction
+    public function store(Request $request)
+    {
+        // Validate the input data
         $request->validate([
-            "no_transaksi"   => "required",
-            "tanggal_transaksi" => "required",
-            "kasir"             => "required",
-            "barang_id"         => "required",
-            "jumlah_barang"     => "required",
-            "total_harga"       => "required",
-            "metode_pembayaran" => "required",
+            'no_transaksi' => 'required',
+            'tanggal_transaksi' => 'required',
+            'metode_pembayaran' => 'required',
+            'barang_id' => 'required|array',
+            'jumlah_barang' => 'required|array',
         ]);
 
+        // Create new transaction
+        $transaksi = Transaksi::create([
+            'no_transaksi' => $request->no_transaksi,
+            'tanggal_transaksi' => $request->tanggal_transaksi,
+            'metode_pembayaran' => $request->metode_pembayaran,
+        ]);
 
-        $storeDataTransaksi=[
-            "no_transaksi"      => $request->no_transaksi,
-            "tanggal_transaksi" => $request->tanggal_transaksi,
-            "kasir"             => Auth::user()->id,
-            "barang_id"         => $request->barang_id,
-            "jumlah_barang"     => $request->jumlah_barang,
-            "total_harga"       => $request->total_harga,
-            "metode_pembayaran" => $request->metode_pembayaran,
-        ];
-        Transaksi::create($storeDataTransaksi);
-        return redirect("/transaksi")->with("success","transaksi selesai");
+        // Handle detail transaction (loop through each selected item)
+        foreach ($request->barang_id as $index => $barangId) {
+            $jumlahBarang = $request->jumlah_barang[$index];
+            $barang = Barang::find($barangId);
+            $totalHarga = $barang->harga * $jumlahBarang;
+
+            // Store detail transaction
+            DetailTransaksi::create([
+                'transaksi_id' => $transaksi->id,
+                'barang_id' => $barangId,
+                'jumlah_barang' => $jumlahBarang,
+                'total_harga' => $totalHarga,
+            ]);
+
+            // Update stock of the item (barang)
+            $barang->decrement('stok_barang', $jumlahBarang);
+            
+        }
+
+        return redirect('/transaksi')->with('success', 'Transaksi berhasil disimpan.');
     }
+
+
 
 
 
@@ -115,8 +119,9 @@ class TransaksiController extends Controller
     {
         // Ambil transaksi beserta detail barang yang terkait
         $transaksis = Transaksi::with('detailTransaksi.barang')->findOrFail($id);
+        $detailll = DetailTransaksi::sum('total_harga');
 
-        return view('dokumentasi.struktransaksi', compact('transaksis'));
+        return view('dokumentasi.struktransaksi', compact('transaksis','detailll'));
     }
 
 
