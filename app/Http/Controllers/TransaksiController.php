@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Barang;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
@@ -38,9 +39,9 @@ class TransaksiController extends Controller
 
 
     public function store(Request $request){
-
+        dd($request->all());
         $request->validate([
-            "nomor_transaksi"   => "required",
+            "no_transaksi"   => "required",
             "tanggal_transaksi" => "required",
             "kasir"             => "required",
             "barang_id"         => "required",
@@ -62,10 +63,6 @@ class TransaksiController extends Controller
         Transaksi::create($storeDataTransaksi);
         return redirect("/transaksi")->with("success","transaksi selesai");
     }
-
-
-
-
 
 
 
@@ -111,5 +108,18 @@ class TransaksiController extends Controller
         // Redirect back to the 'barang' list page with a success message
         return redirect('/transaksi')->with('success', 'Barang berhasil dihapus!');
     }
+
+
+
+    public function print($id)
+    {
+        // Ambil transaksi beserta detail barang yang terkait
+        $transaksis = Transaksi::with('detailTransaksi.barang')->findOrFail($id);
+
+        return view('dokumentasi.struktransaksi', compact('transaksis'));
+    }
+
+
+
 }
 

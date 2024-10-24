@@ -55,7 +55,7 @@
                                         <div>
                                             <h4 class="mb-1">Pendapatan  Penjualan</h4>
                                             <p>total barang terjual dalam bulan ini</p>
-                                            <h3 class="m-0">Rp.30050</h3>
+                                            <h3 class="m-0">Rp.{{ number_format($transaksis, 0, ',', '.') }}</h3>
                                         </div>
                                         <div>
                                             <ul>
