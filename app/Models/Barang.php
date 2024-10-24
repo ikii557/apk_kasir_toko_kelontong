@@ -15,8 +15,18 @@ class Barang extends Model
         "harga_barang",
     ];
 
+    public function kurangiStok($jumlah_barang)
+    {
+        $this->stok_barang -= $jumlah_barang;
+
+
+    $this->save();
+    }
+
     public function DetailTransaksi()
     {
         return $this->hasMany(Transaksi::class);
     }
+
+    
 }

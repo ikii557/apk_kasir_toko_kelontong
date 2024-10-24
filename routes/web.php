@@ -73,6 +73,7 @@ Route::post('/updatetransaksi/{id}', [TransaksiController::class,'update']);
 Route::get('/destroy/{id}', [TransaksiController::class,'destroy']);
 
 
+Route::get('/print/{id}', [TransaksiController::class, 'print'])->name('transaksi.print');
 
 
 
