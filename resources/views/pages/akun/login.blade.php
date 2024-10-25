@@ -7,7 +7,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-image: url('your-background-image.jpg'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
         }
         .auth-form {
             max-width: 400px;
@@ -23,7 +28,7 @@
     </style>
 </head>
 <body>
-    <div class="container ">
+    <div class="container">
         <div class="auth-form border">
             <h4 class="text-center mb-4">Log In Untuk Masuk</h4>
             <form action="/store/login" method="post" class="mt-4">
@@ -37,7 +42,7 @@
                 </div>
                 <div class="form-group">
                     <label><strong>Password</strong></label>
-                    <input name="password" type="password" class="form-control" >
+                    <input name="password" type="password" class="form-control">
                     @error('password')
                             <p class="text-danger">{{$message}}</p>
                     @enderror

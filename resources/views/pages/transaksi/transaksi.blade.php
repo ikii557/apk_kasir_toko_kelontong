@@ -1,3 +1,6 @@
+<?php
+use App\Models\DetailTransaksi;
+?>
 @extends('layouts.app')
 @section('content')
 
@@ -41,9 +44,17 @@
                                                 <td>{{$transaksi->no_transaksi}}</td>
                                                 <td>{{$transaksi->tanggal_transaksi}}</td>
                                                 <td>{{Auth::user()->nama}}</td>
-                                                <td>{{$transaksi->barang}}</td>
-                                                <td><span class="label gradient-1 btn-rounded">{{$transaksi->jumlah_barang}}</span></td>
-                                                <td><span class="label gradient-3 btn-rounded">Rp.{{$transaksi->total_harga}}</span></td>
+                                                @php
+                                                    $detailtransaksis = DetailTransaksi::where('transaksi_id', $transaksi->id)->get();
+                                                @endphp
+                                                <td>
+                                                    @foreach ($detailtransaksis as $detailtransaksi)
+                                                        {{$detailtransaksi->barang->nama_barang}}
+                                                    @endforeach
+                                                </td>
+                                                <td><span class="label gradient-1 btn-rounded">{{$detailtransaksi->jumlah_barang}}</span></td>
+                                                <td><span class="label gradient-3 btn-rounded">Rp.{{$detailtransaksi->total_harga}}</span></td>
+
                                                 <td>{{$transaksi->metode_pembayaran}}</td>
 
                                                 <td><span><a href="/edittransaksi/{{$transaksi->id}}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a>
@@ -86,7 +97,7 @@
                                         </tbody>
                                     </table>
                                     <div>
-                                
+
                             </div>
                                 </div>
                             </div>

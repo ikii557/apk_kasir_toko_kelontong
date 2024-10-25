@@ -15,8 +15,8 @@ class TransaksiController extends Controller
     {
         $barangs = Barang::all();
         $transaksis = Transaksi::all();
-        $detailtransaksis = DetailTransaksi::all();
-        return view('pages.transaksi.transaksi', compact('transaksis', 'barangs','detailtransaksis'));
+
+        return view('pages.transaksi.transaksi', compact('transaksis', 'barangs'));
     }
 
 
@@ -37,6 +37,7 @@ class TransaksiController extends Controller
             'jumlah_barang' => 'required|array',
         ]);
 
+
         // Create new transaction
         $transaksi = Transaksi::create([
             'no_transaksi' => $request->no_transaksi,
@@ -46,6 +47,7 @@ class TransaksiController extends Controller
 
         // Handle detail transaction (loop through each selected item)
         foreach ($request->barang_id as $index => $barangId) {
+
             $jumlahBarang = $request->jumlah_barang[$index];
             $barang = Barang::find($barangId);
             $totalHarga = $barang->harga * $jumlahBarang;
@@ -60,7 +62,7 @@ class TransaksiController extends Controller
 
             // Update stock of the item (barang)
             $barang->decrement('stok_barang', $jumlahBarang);
-            
+
         }
 
         return redirect('/transaksi')->with('success', 'Transaksi berhasil disimpan.');
