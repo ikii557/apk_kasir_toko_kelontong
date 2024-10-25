@@ -58,7 +58,9 @@
         ***********************************-->
     </div>
         @include('layouts.footer')
-    
+
+
+    @stack('custom-js')
 </body>
 
 </html>
