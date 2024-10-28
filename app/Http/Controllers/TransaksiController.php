@@ -28,50 +28,60 @@ class TransaksiController extends Controller
     }
     // Store new transaction
     public function store(Request $request)
-    {
-        // Validate the input data
-        $request->validate([
-            'no_transaksi' => 'required|unique',
-            'tanggal_transaksi' => 'required',
-            'metode_pembayaran' => 'required',
-        ],[
-            'no_transaksi.required' => 'nomor transaksi harus di isi',
-            'no_transaksi.unique'   => 'nomor transaksi sudah terdaftar',
-            'tanggal_transaksi.required'     => 'tanggal transaksi harus di isi',
-            'metode_pembayaran.required' => 'metode pembayaran harus di isi'
+{
+    // Validate the input data
+    $request->validate([
+        'no_transaksi' => 'required|unique:transaksis,no_transaksi',
+        'tanggal_transaksi' => 'required',
+        'metode_pembayaran' => 'required',
+    ], [
+        'no_transaksi.required' => 'Nomor transaksi harus diisi',
+        'no_transaksi.unique' => 'Nomor transaksi sudah terdaftar',
+        'tanggal_transaksi.required' => 'Tanggal transaksi harus diisi',
+        'metode_pembayaran.required' => 'Metode pembayaran harus diisi'
+    ]);
 
-        ]);
+    // Check if stock is sufficient for all items before creating the transaction
+    foreach ($request->barang_id as $index => $nama_barang) {
+        $jumlahbarang = $request->jumlah_barang[$index];
+        $barang = Barang::find($nama_barang);
 
-
-        // Create new transaction
-        $transaksi = Transaksi::create([
-            'no_transaksi' => $request->no_transaksi,
-            'tanggal_transaksi' => $request->tanggal_transaksi,
-            'metode_pembayaran' => $request->metode_pembayaran,
-        ]);
-
-        // Handle detail transaction (loop through each selected item)
-        foreach ($request->barang_id as $index => $nama_barang) {
-
-            $jumlahbarang = $request->jumlah_barang[$index];
-            $barang = Barang::find($nama_barang);
-            $total_harga = $barang->harga_barang * $jumlahbarang;
-
-            // Store detail transaction
-            DetailTransaksi::create([
-                'transaksi_id' => $transaksi->id,
-                'barang_id' => $nama_barang,
-                'jumlah_barang' => $jumlahbarang,
-                'total_harga' => $total_harga,
-            ]);
-
-            // Update stock of the item (barang)
-            $barang->decrement('stok_barang', $jumlahbarang);
-
+        // Check if stock is sufficient
+        if ($barang->stok_barang < $jumlahbarang) {
+            // Redirect back with an error message if stock is insufficient
+            return redirect()->back()->with('error', "Stok tidak mencukupi untuk barang: $barang->nama_barang. Silakan periksa kembali jumlah barang.");
         }
-
-        return redirect('/transaksi')->with('success', 'Transaksi berhasil disimpan.');
     }
+
+    // Create new transaction if all items have sufficient stock
+    $transaksi = Transaksi::create([
+        'no_transaksi' => $request->no_transaksi,
+        'tanggal_transaksi' => $request->tanggal_transaksi,
+        'metode_pembayaran' => $request->metode_pembayaran,
+    ]);
+
+    // Handle detail transaction and update stock
+    foreach ($request->barang_id as $index => $nama_barang) {
+        $jumlahbarang = $request->jumlah_barang[$index];
+        $barang = Barang::find($nama_barang);
+        $total_harga = $barang->harga_barang * $jumlahbarang;
+
+        // Store detail transaction
+        DetailTransaksi::create([
+            'transaksi_id' => $transaksi->id,
+            'barang_id' => $nama_barang,
+            'jumlah_barang' => $jumlahbarang,
+            'total_harga' => $total_harga,
+        ]);
+
+        // Update stock of the item (barang)
+        $barang->decrement('stok_barang', $jumlahbarang);
+    }
+
+    // Redirect to the transaction page with a success message
+    return redirect('/transaksi')->with('success', 'Transaksi berhasil disimpan.');
+}
+
 
 
 

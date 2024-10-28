@@ -64,7 +64,32 @@
                                     <tr>
                                             <td>{{ $barangs->firstItem() + $no}}</td>
                                             <td>{{ $barang->nama_barang }}</td>
-                                            <td>{{ $barang->stok_barang }}</td>
+                                            <td>
+                                                <h6>Sisa Barang <span class="pull-right">{{ $barang->stok_barang }}</span></h6>
+                                                <div class="progress mb-3" style="height: 7px">
+                                                    @if ($barang->stok_barang > 100)
+                                                        <!-- Warna gradient-1 jika stok lebih dari 100 -->
+                                                        <div class="progress-bar gradient-1" style="width: 100%;" role="progressbar">
+                                                            <span class="sr-only">{{ $barang->stok_barang }}% Stok</span>
+                                                        </div>
+                                                    @elseif ($barang->stok_barang > 50)
+                                                        <!-- Warna gradient-2 jika stok antara 51 dan 100 -->
+                                                        <div class="progress-bar gradient-2" style="width: {{ $barang->stok_barang }}%;" role="progressbar">
+                                                            <span class="sr-only">{{ $barang->stok_barang }}% Stok</span>
+                                                        </div>
+                                                    @else
+                                                        <!-- Warna gradient-3 jika stok 50 atau kurang -->
+                                                        <div class="progress-bar gradient-3" style="width: {{ $barang->stok_barang }}%;" role="progressbar">
+                                                            <span class="sr-only">{{ $barang->stok_barang }}% Stok</span>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            </td>
+
+
+
+
+
                                             <td>Rp.{{ $barang->harga_barang }}</td>
                                             <td>
                                                 <a href="/editbarang/{{$barang->id}}" class="btn btn-info">Edit</a>
