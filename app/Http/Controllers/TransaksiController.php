@@ -15,8 +15,9 @@ class TransaksiController extends Controller
     {
         $barangs = Barang::all();
         $transaksis = Transaksi::all();
+        $detailtransaksi = DetailTransaksi::where('total_harga ');
 
-        return view('pages.transaksi.transaksi', compact('transaksis', 'barangs'));
+        return view('pages.transaksi.transaksi', compact('transaksis', 'barangs','detailtransaksi'));
     }
 
 
@@ -30,11 +31,15 @@ class TransaksiController extends Controller
     {
         // Validate the input data
         $request->validate([
-            'no_transaksi' => 'required',
+            'no_transaksi' => 'required|unique',
             'tanggal_transaksi' => 'required',
             'metode_pembayaran' => 'required',
-            'barang_id' => 'required|array',
-            'jumlah_barang' => 'required|array',
+        ],[
+            'no_transaksi.required' => 'nomor transaksi harus di isi',
+            'no_transaksi.unique'   => 'nomor transaksi sudah terdaftar',
+            'tanggal_transaksi.required'     => 'tanggal transaksi harus di isi',
+            'metode_pembayaran.required' => 'metode pembayaran harus di isi'
+
         ]);
 
 
@@ -46,22 +51,22 @@ class TransaksiController extends Controller
         ]);
 
         // Handle detail transaction (loop through each selected item)
-        foreach ($request->barang_id as $index => $barangId) {
+        foreach ($request->barang_id as $index => $nama_barang) {
 
-            $jumlahBarang = $request->jumlah_barang[$index];
-            $barang = Barang::find($barangId);
-            $totalHarga = $barang->harga * $jumlahBarang;
+            $jumlahbarang = $request->jumlah_barang[$index];
+            $barang = Barang::find($nama_barang);
+            $total_harga = $barang->harga_barang * $jumlahbarang;
 
             // Store detail transaction
             DetailTransaksi::create([
                 'transaksi_id' => $transaksi->id,
-                'barang_id' => $barangId,
-                'jumlah_barang' => $jumlahBarang,
-                'total_harga' => $totalHarga,
+                'barang_id' => $nama_barang,
+                'jumlah_barang' => $jumlahbarang,
+                'total_harga' => $total_harga,
             ]);
 
             // Update stock of the item (barang)
-            $barang->decrement('stok_barang', $jumlahBarang);
+            $barang->decrement('stok_barang', $jumlahbarang);
 
         }
 
