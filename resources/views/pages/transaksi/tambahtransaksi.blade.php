@@ -77,6 +77,11 @@
                             <div class="form-group">
                                 <label for="jumlah_barang">Jumlah Barang:</label>
                                 <input type="number" name="jumlah_barang[]" class="form-control jumlah-input" min="1">
+                                @if(session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }} ,   <a href="/tambahbarang">tambah barang</a>
+                                    </div>
+                                @endif
                             </div>
 
                             <!-- Total Harga Barang -->
