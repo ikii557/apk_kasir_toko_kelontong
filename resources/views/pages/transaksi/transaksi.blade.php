@@ -52,8 +52,29 @@ use App\Models\DetailTransaksi;
                                                         {{$detailtransaksi->barang->nama_barang}}
                                                     @endforeach
                                                 </td>
-                                                <td><span class="label gradient-1 btn-rounded">{{$detailtransaksi->jumlah_barang}}</span></td>
-                                                <td><span class="label gradient-3 btn-rounded">Rp.{{$detailtransaksi->total_harga}}</span></td>
+
+                                                @if ($transaksi->detailtransaksi->sum('total_harga') >= 0 && $transaksi->detailtransaksi->sum('total_harga')  < 100000)
+                                                    <td><span class="label gradient-3 btn-rounded">{{ $transaksi->detailtransaksi->sum('jumlah_barang') }}</span></td>
+                                                @endif
+                                                @if ($transaksi->detailtransaksi->sum('total_harga') >= 100000  && $transaksi->detailtransaksi->sum('total_harga')  < 1000000)
+                                                    <td><span class="label gradient-2 btn-rounded">{{ $transaksi->detailtransaksi->sum('jumlah_barang') }}</span></td>
+                                                @endif
+                                                @if ($transaksi->detailtransaksi->sum('total_harga') >= 1000000)
+                                                <td><span class="label gradient-1 btn-rounded">{{ $transaksi->detailtransaksi->sum('jumlah_barang') }}</span></td>
+                                                @endif
+
+
+
+
+                                                @if ($transaksi->detailtransaksi->sum('total_harga') >= 0 && $transaksi->detailtransaksi->sum('total_harga')  < 100000)
+                                                    <td><span class="label gradient-3 btn-rounded">Rp. {{ $transaksi->detailtransaksi->sum('total_harga') }}</span></td>
+                                                @endif
+                                                @if ($transaksi->detailtransaksi->sum('total_harga') >= 100000  && $transaksi->detailtransaksi->sum('total_harga')  < 1000000)
+                                                    <td><span class="label gradient-2 btn-rounded">Rp. {{ $transaksi->detailtransaksi->sum('total_harga') }}</span></td>
+                                                @endif
+                                                @if ($transaksi->detailtransaksi->sum('total_harga') >= 1000000)
+                                                    <td><span class="label gradient-1 btn-rounded">Rp. {{ $transaksi->detailtransaksi->sum('total_harga') }}</span></td>
+                                                @endif
 
                                                 <td>{{$transaksi->metode_pembayaran}}</td>
 

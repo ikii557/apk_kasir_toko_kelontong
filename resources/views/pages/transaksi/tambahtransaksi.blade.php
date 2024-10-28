@@ -13,25 +13,30 @@
                     <!-- Nomor Transaksi -->
                     <div class="form-group">
                         <label for="no_transaksi">Nomor Transaksi:</label>
-                        <input type="text" name="no_transaksi" class="form-control" value="{{ old('$no_transaksi') }}"
-                            required>
+                        <input type="text" name="no_transaksi" class="form-control" value="{{ old('$no_transaksi') }}" >
+                        @error('no_transaksi')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
                     </div>
 
                     <!-- Tanggal Transaksi -->
                     <div class="form-group">
                         <label for="tanggal_transaksi">Tanggal Transaksi:</label>
-                        <input type="date" name="tanggal_transaksi" class="form-control"
-                            value="{{ old('tanggal_transaksi') }}" required>
+                        <input type="date" name="tanggal_transaksi" class="form-control" value="{{ old('tanggal_transaksi') }}" >
+                        @error('tanggal_transaksi')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
                     </div>
 
                     <!-- Nama Kasir (Admin) -->
                     <div class="form-group">
                         <label for="kasir">Kasir (Admin):</label>
                         <input type="text" name="kasir" class="form-control" value="{{Auth::user()->nama}}" readonly>
+
                     </div>
                     <div class="form-group">
                         <label for="metode_pembayaran">Metode Pembayaran:</label>
-                        <select name="metode_pembayaran" id="metode_pembayaran" class="form-control" required>
+                        <select name="metode_pembayaran" id="metode_pembayaran" class="form-control" >
                             <option value="" disabled selected>Pilih Metode Pembayaran</option>
                             <option value="tunai" {{ old('metode_pembayaran') == 'tunai' ? 'selected' : '' }}>Tunai
                             </option>
@@ -40,6 +45,9 @@
                             <option value="kredit" {{ old('metode_pembayaran') == 'kredit' ? 'selected' : '' }}>Kredit
                             </option>
                         </select>
+                        @error('metode_pembayaran')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
                     </div>
 
                 </div>
@@ -55,7 +63,7 @@
                             <!-- Nama Barang -->
                             <div class="form-group">
                                 <label for="barang_id">Nama Barang:</label>
-                                <select name="barang_id[]" class="form-control barang-select" required>
+                                <select name="barang_id[]" class="form-control barang-select" >
                                     <option value="" disabled selected>Pilih Barang</option>
                                     @foreach ($barangs as $produk)
                                         <option value="{{ $produk->id }}" data-harga="{{ $produk->harga_barang }}">
@@ -68,8 +76,7 @@
                             <!-- Jumlah Barang -->
                             <div class="form-group">
                                 <label for="jumlah_barang">Jumlah Barang:</label>
-                                <input type="number" name="jumlah_barang[]" class="form-control jumlah-input" min="1"
-                                    required>
+                                <input type="number" name="jumlah_barang[]" class="form-control jumlah-input" min="1">
                             </div>
 
                             <!-- Total Harga Barang -->
