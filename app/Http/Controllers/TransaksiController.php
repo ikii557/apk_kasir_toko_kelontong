@@ -114,44 +114,41 @@ public function update(Request $request, $id)
     ]);
 
     $transaksi = Transaksi::findOrFail($id);
-
-    // Collect all detail IDs from the form
     $inputDetailIds = collect($request->detail_transaksi)->pluck('id')->filter();
 
-    // Delete details that are no longer in the form submission
+    // Delete removed items
     DetailTransaksi::where('transaksi_id', $transaksi->id)
         ->whereNotIn('id', $inputDetailIds)
         ->delete();
 
-    // Loop through each detail_transaksi
+    // Update or add items
     foreach ($request->detail_transaksi as $key => $item) {
         $barang = Barang::findOrFail($item['barang_id']);
         $jumlahBarang = $item['jumlah_barang'];
 
-        if ($barang->stok_barang < $jumlahBarang) {
-            return redirect()->back()->with('error', "Stok tidak mencukupi untuk barang: {$barang->nama_barang}.");
-        }
-
-        // Adjust total_harga to add three zeros by multiplying it by 1000
-        $totalHarga = $item['total_harga'] * 1000;
-
-        // Update or create the detail transaction
-        DetailTransaksi::updateOrCreate(
+        $detail = DetailTransaksi::updateOrCreate(
             ['id' => $item['id'] ?? null],
             [
                 'transaksi_id'   => $transaksi->id,
                 'barang_id'      => $item['barang_id'],
                 'jumlah_barang'  => $jumlahBarang,
-                'total_harga'    => $totalHarga,
+                'total_harga'    => $item['total_harga'],
             ]
         );
 
-        // Decrement the stock
-        $barang->decrement('stok_barang', $jumlahBarang);
+        $oldJumlah = $detail->exists ? $detail->jumlah_barang : 0;
+        $stokAdjustment = $jumlahBarang - $oldJumlah;
+
+        if ($barang->stok_barang < $stokAdjustment) {
+            return redirect()->back()->with('error', "Stok tidak mencukupi untuk barang: {$barang->nama_barang}.");
+        }
+
+        $barang->decrement('stok_barang', $stokAdjustment);
     }
 
     return redirect("/transaksi")->with("success", "Transaksi berhasil diupdate.");
 }
+
 
 
 

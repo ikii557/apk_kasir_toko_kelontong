@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row">
+<di class="row">
     <div class="col-lg-3 mt-4">
         <h4 class="p-2">Print Struk Transaksi</h4>
         <div class="card">
@@ -55,67 +55,77 @@
             </div>
         </div>
     </div>
-<div class="row">
-    <div class="col-lg-9 mt-4">
-        <h4 class="p-2">Data Laporan</h4>
-        <div class="card">
-            <div class="p-2 mt-4 me-4">
-                <p><strong>Laporan Penjualan Hari Ini</strong></p>
 
-                <div class="mb-2">
-                    <p><strong>Total Transaksi:</strong> {{ $transaksis->count() }}</p>
-                    <p><strong>Total Pendapatan:</strong> Rp. {{ number_format($total_harga, 0, ',', '.') }}</p>
-                    <p><strong>Total Barang Terjual:</strong> {{ $total_barang }}</p>
+
+    <div class="p-2 mt-4 me-3">
+    <h4>Data Laporan Transaksi</h4>
+    <div class="card mt-3">
+        <div class="card-body">
+            {{-- Filter options --}}
+            <form action="/report" method="GET" class="mb-4">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="start_date">Tanggal Mulai:</label>
+                        <input type="date" name="start_date" id="start_date" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="end_date">Tanggal Akhir:</label>
+                        <input type="date" name="end_date" id="end_date" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="kasir">Kasir:</label>
+                        <select name="kasir" id="kasir" class="form-control">
+                            <option value="">Semua Kasir</option>
+                           
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-primary mt-4">Filter</button>
+                    </div>
                 </div>
+            </form>
 
-                <table class="table table-bordered table-sm mt-3">
-                    <thead>
+            {{-- Laporan Pengeluaran --}}
+            <h5>Laporan Pengeluaran Barang</h5>
+            <table class="table table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Total Barang Keluar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($dailyReport as $date => $report)
                         <tr>
-                            <th>No Transaksi</th>
-                            <th>Kasir</th>
-                            <th>Tanggal</th>
-                            <th>Nama Barang</th>
-                            <th>Jumlah</th>
-                            <th>Total Harga</th>
+                            <td>{{ $date }}</td>
+                            <td>{{ $report['totalPengeluaran'] }}</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($transaksis as $transaction)
-                            @foreach ($transaction->detailTransaksi as $detail)
-                                <tr>
-                                    <td>{{ $transaction->no_transaksi }}</td>
-                                    <td>{{ $transaction->user->nama }}</td>
-                                    <td>{{ $transaction->tanggal_transaksi }}</td>
-                                    <td>{{ $detail->barang->nama_barang }}</td>
-                                    <td>{{ $detail->jumlah_barang }}</td>
-                                    <td>Rp. {{ number_format($detail->jumlah_barang * $detail->barang->harga_barang, 0, ',', '.') }}</td>
-                                </tr>
-                            @endforeach
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+                    @endforeach
+                </tbody>
+            </table>
+
+            {{-- Laporan Pemasukan --}}
+            <h5>Laporan Pemasukan Harian</h5>
+            <table class="table table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Total Pemasukan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($dailyReport as $date => $report)
+                        <tr>
+                            <td>{{ $date }}</td>
+                            <td>Rp {{ number_format($report['totalPemasukan'], 0, ',', '.') }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 
-    <!-- Data Transaksi Table -->
-    <div class="col-lg-12 mt-4">
-        <div class="card">
-            <h4 class="p-4">Data Transaksi</h4>
-            <div class="p-4 me-4">
-                <form action="/transaksi" method="get">
-                    <div class="input-group">
-                        <input type="text" class="form-control p-2" name="search" value="{{ request('search') }}">
-                        <button class="btn btn-primary">Cari</button>
-                    </div>
-                    <div class="float-right"><a href="/tambahtransaksi" class="btn btn-primary">Tambah Transaksi</a></div>
-                </form>
-            </div>
-
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
 
 
 

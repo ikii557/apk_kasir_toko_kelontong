@@ -47,7 +47,7 @@
 
                             <div class="form-group">
                                 <label for="total_harga_{{ $key }}">Harga:</label>
-                                <input type="text" name="detail_transaksi[{{ $key }}][total_harga]" value="{{ $item->total_harga }}" class="form-control total-harga" data-index="{{ $key }}" readonly>
+                                <input type="text" name="detail_transaksi[{{ $key }}][total_harga]" value="{{ $item->total_harga }}"  class="form-control total-harga" data-index="{{ $key }}" readonly>
                             </div>
                             <!-- Remove button for existing items -->
                             <button type="button" class="btn btn-danger btn-sm remove-item" data-index="{{ $key }}">X</button>
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (!isNaN(hargaBarang) && !isNaN(jumlahBarang)) {
             const totalHarga = hargaBarang * jumlahBarang;
-            totalHargaInput.value = ` ${totalHarga.toLocaleString('id-ID')}`;
+            totalHargaInput.value = totalHarga.toLocaleString('id-ID');
         }
     }
 
