@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\DasboardController;
 use App\Http\Controllers\TransaksiController;
 
@@ -75,7 +76,7 @@ Route::get('/destroy/{id}', [TransaksiController::class,'destroy']);
 
 Route::get('/print/{id}', [TransaksiController::class, 'print'])->name('transaksi.print');
 
-
+Route::get('/report', [LaporanController::class, 'index'])->name('report.index');
 
 //logout
 Route::get('/logout', [AuthController::class,'logout']);

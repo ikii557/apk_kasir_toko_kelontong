@@ -80,7 +80,7 @@ use App\Models\DetailTransaksi;
 
                                                 <td><span><a href="/edittransaksi/{{$transaksi->id}}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a>
                                                 <a href="/destroy/{{$transaksi->id}}" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a>
-                                                <a href="/print/{{$transaksi->id}}" data-toggle="tooltip" data-placement="top" title="Print"><i class="bi bi-printer-fill"></i></a> </span>
+                                                <a href="/print/{{$transaksi->id}}" data-toggle="tooltip" data-placement="top" title="Print"><i class="bi bi-printer-fill"></i></a> </span><i class="bi bi-flag-fill"></i>
                                                 </td>
 
                                         </tr>
