@@ -1,86 +1,149 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h2>Edit Transaksi</h2>
+<div class="container">
+    <h2>Edit Transaksi</h2>
 
-        <div class="card">
-            <div class="p-3 mt-4 me-4">
-                <form action="/updatetransaksi/{{$transaksis->id}}" method="POST">
-                    @csrf
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @elseif(session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
 
-                    <!-- Nama Barang -->
-                    <div class="form-group">
-                        <label for="barang_id">Nama Barang:</label>
-                        <select name="barang_id" id="barang_id" class="form-control" >
-                            <option value="" disabled selected>Pilih Barang</option>
-                            @foreach ($barangs as $produk)
-                                <option
-                                    value="{{ $produk->id }}"
-                                    data-harga="{{ $produk->harga_barang }}"
-                                    {{ $transaksis->barang_id == $produk->id ? 'selected' : '' }}
-                                >
-                                    {{ $produk->nama_barang }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
+    <div class="card">
+        <div class="p-3 mt-4 me-4">
+            <form action="/updatetransaksi/{{ $transaksi->id }}" method="POST">
+                @csrf
 
-                    <!-- Jumlah Barang -->
-                    <div class="form-group">
-                        <label for="jumlah_barang">Jumlah Barang:</label>
-                        <input type="number" value="{{ $transaksis->jumlah_barang }}" name="jumlah_barang" id="jumlah_barang" class="form-control" >
-                    </div>
+                <!-- Nama Kasir -->
+                <div class="form-group">
+                    <label for="kasir">Kasir (Admin):</label>
+                    <input type="text" name="kasir" class="form-control" value="{{ Auth::user()->nama }}" readonly>
+                </div>
 
-                    <!-- Total Harga -->
-                    <div class="form-group">
-                        <label for="total_harga">Total Harga:</label>
-                        <input type="text" value="{{ $transaksis->total_harga }}" name="total_harga" id="total_harga" class="form-control" readonly>
-                    </div>
+                <div id="items-container">
+                    <!-- Existing Detail Transaksi -->
+                    @foreach($transaksi->detailTransaksi as $key => $item)
+                        <div class="item-entry" data-index="{{ $key }}">
+                            <div class="form-group">
+                                <label for="barang_id_{{ $key }}">Nama Barang:</label>
+                                <select name="detail_transaksi[{{ $key }}][barang_id]" class="form-control barang-select" data-index="{{ $key }}" required>
+                                    <option value="" disabled>Pilih Barang</option>
+                                    @foreach ($barangs as $produk)
+                                        <option value="{{ $produk->id }}"
+                                                data-harga="{{ $produk->harga_barang }}"
+                                                data-stok="{{ $produk->stok_barang }}"
+                                                {{ $item->barang_id == $produk->id ? 'selected' : '' }}>
+                                            {{ $produk->nama_barang }} - Stok: {{ $produk->stok_barang }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
 
-                    <!-- Metode Pembayaran -->
-                    <div class="form-group">
-                        <label for="metode_pembayaran">Metode Pembayaran:</label>
-                        <select name="metode_pembayaran" id="metode_pembayaran" class="form-control">
-                            <option value="" disabled selected>Pilih Metode Pembayaran</option>
-                            <option value="tunai" {{ $transaksis->metode_pembayaran  == 'tunai' ? 'selected' : '' }}>Tunai</option>
-                            <option value="debit" {{ $transaksis->metode_pembayaran  == 'debit' ? 'selected' : '' }}>Debit</option>
-                            <option value="kredit" {{ $transaksis->metode_pembayaran  == 'kredit' ? 'selected' : '' }}>Kredit</option>
-                        </select>
-                    </div>
+                            <div class="form-group">
+                                <label for="jumlah_barang_{{ $key }}">Jumlah Barang:</label>
+                                <input type="number" name="detail_transaksi[{{ $key }}][jumlah_barang]" value="{{ $item->jumlah_barang }}" class="form-control jumlah-input" data-index="{{ $key }}" min="1" required>
+                            </div>
 
-                    <!-- Submit Button -->
-                    <button type="submit" class="btn btn-primary">edit Transaksi</button>
+                            <div class="form-group">
+                                <label for="total_harga_{{ $key }}">Harga:</label>
+                                <input type="text" name="detail_transaksi[{{ $key }}][total_harga]" value="{{ $item->total_harga }}" class="form-control total-harga" data-index="{{ $key }}" readonly>
+                            </div>
+                            <!-- Remove button for existing items -->
+                            <button type="button" class="btn btn-danger btn-sm remove-item" data-index="{{ $key }}">X</button>
+                        </div>
+                    @endforeach
+                </div>
 
-                </form>
-            </div>
+                <!-- Button to Add New Item -->
+                <button type="button" class="btn btn-secondary mt-3" id="add-item">Tambah Barang</button>
+                <button type="submit" class="btn btn-primary mt-3">Edit Transaksi</button>
+            </form>
         </div>
     </div>
+</div>
 
-    <!-- JavaScript to handle dynamic price calculation -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const barangSelect = document.getElementById('barang_id');
-            const jumlahInput = document.getElementById('jumlah_barang');
-            const totalHargaInput = document.getElementById('total_harga');
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const itemsContainer = document.getElementById('items-container');
+    let itemIndex = {{ count($transaksi->detailTransaksi) }};
 
-            function calculateTotal() {
-                const selectedOption = barangSelect.options[barangSelect.selectedIndex];
-                const hargaBarang = selectedOption.getAttribute('data-harga');
-                const jumlahBarang = jumlahInput.value;
+    function calculateTotal(index) {
+        const selectedOption = document.querySelector(`select[data-index="${index}"] option:checked`);
+        const hargaBarang = parseFloat(selectedOption.getAttribute('data-harga'));
+        const stokBarang = parseInt(selectedOption.getAttribute('data-stok'));
+        const jumlahInput = document.querySelector(`input[data-index="${index}"].jumlah-input`);
+        const totalHargaInput = document.querySelector(`input[data-index="${index}"].total-harga`);
+        const jumlahBarang = parseInt(jumlahInput.value);
 
-                if (hargaBarang && jumlahBarang) {
-                    const totalHarga = hargaBarang * jumlahBarang;
-                    totalHargaInput.value = `Rp. ${totalHarga.toLocaleString()}`;
-                }
+        if (jumlahBarang > stokBarang) {
+            alert(`Stok tidak mencukupi. Stok tersedia: ${stokBarang}`);
+            jumlahInput.value = stokBarang;
+            return;
+        }
+
+        if (!isNaN(hargaBarang) && !isNaN(jumlahBarang)) {
+            const totalHarga = hargaBarang * jumlahBarang;
+            totalHargaInput.value = ` ${totalHarga.toLocaleString('id-ID')}`;
+        }
+    }
+
+    document.getElementById('add-item').addEventListener('click', () => {
+        const newItem = `
+            <div class="item-entry" data-index="${itemIndex}">
+                <div class="form-group">
+                    <label for="barang_id_${itemIndex}">Nama Barang:</label>
+                    <select name="detail_transaksi[${itemIndex}][barang_id]" class="form-control barang-select" data-index="${itemIndex}" required>
+                        <option value="" disabled selected>Pilih Barang</option>
+                        @foreach ($barangs as $produk)
+                            <option value="{{ $produk->id }}"
+                                    data-harga="{{ $produk->harga_barang }}"
+                                    data-stok="{{ $produk->stok_barang }}">
+                                {{ $produk->nama_barang }} - Stok: {{ $produk->stok_barang }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="jumlah_barang_${itemIndex}">Jumlah Barang:</label>
+                    <input type="number" name="detail_transaksi[${itemIndex}][jumlah_barang]" class="form-control jumlah-input" data-index="${itemIndex}" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="total_harga_${itemIndex}">Harga:</label>
+                    <input type="text" name="detail_transaksi[${itemIndex}][total_harga]" class="form-control total-harga" data-index="${itemIndex}" readonly>
+                </div>
+                <button type="button" class="btn btn-danger btn-sm remove-item" data-index="${itemIndex}">X</button>
+            </div>
+        `;
+        itemsContainer.insertAdjacentHTML('beforeend', newItem);
+        itemIndex++;
+    });
+
+    itemsContainer.addEventListener('input', function(event) {
+        const target = event.target;
+        if (target.classList.contains('jumlah-input')) {
+            const index = target.getAttribute('data-index');
+            calculateTotal(index);
+        }
+    });
+
+    itemsContainer.addEventListener('change', function(event) {
+        const target = event.target;
+        if (target.classList.contains('barang-select')) {
+            const index = target.getAttribute('data-index');
+            calculateTotal(index);
+        }
+    });
+
+    itemsContainer.addEventListener('click', function(event) {
+        if (event.target.classList.contains('remove-item')) {
+            const index = event.target.getAttribute('data-index');
+            const itemEntry = document.querySelector(`.item-entry[data-index="${index}"]`);
+            if (itemEntry) {
+                itemEntry.remove();
             }
-
-            // Calculate total when the user changes the selected item
-            barangSelect.addEventListener('change', calculateTotal);
-
-            // Calculate total when the user changes the quantity
-            jumlahInput.addEventListener('input', calculateTotal);
-        });
-    </script>
+        }
+    });
+});
+</script>
 @endsection
-        

@@ -49,7 +49,7 @@ use App\Models\DetailTransaksi;
                                                 @endphp
                                                 <td>
                                                     @foreach ($detailtransaksis as $detailtransaksi)
-                                                        {{$detailtransaksi->barang->nama_barang}}
+                                                        {{$detailtransaksi->barang->nama_barang}},
                                                     @endforeach
                                                 </td>
 
