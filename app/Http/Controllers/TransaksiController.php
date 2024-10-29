@@ -90,45 +90,73 @@ class TransaksiController extends Controller
 
 
 
-    public function edit($id){
-        $barangs = Barang::all();
-        $transaksis = Transaksi::find($id);
-        return view("pages.transaksi.edittransaksi", compact("barangs","transaksis"));
+public function edit($id)
+{
+    $transaksi = Transaksi::with('detailTransaksi')->find($id); // Load transaction details
+    $barangs = Barang::all(); // Get all available products
+    $users = User::all(); // Get all cashiers
+
+    return view('pages.transaksi.edittransaksi', compact('transaksi', 'barangs', 'users'));
+}
+
+
+public function update(Request $request, $id)
+{
+    $request->validate([
+        "detail_transaksi.*.barang_id"   => "required",
+        "detail_transaksi.*.jumlah_barang" => "required|min:1",
+        "detail_transaksi.*.total_harga"   => "required",
+    ],[
+        "detail_transaksi.*.barang_id.required"        => "Nama barang harus diisi",
+        "detail_transaksi.*.jumlah_barang.required"    => "Jumlah barang harus diisi",
+        "detail_transaksi.*.jumlah_barang.min"         => "Barang minimal 1",
+        "detail_transaksi.*.total_harga.required"      => "Total harga harus diisi",
+    ]);
+
+    $transaksi = Transaksi::findOrFail($id);
+
+    // Collect all detail IDs from the form
+    $inputDetailIds = collect($request->detail_transaksi)->pluck('id')->filter();
+
+    // Delete details that are no longer in the form submission
+    DetailTransaksi::where('transaksi_id', $transaksi->id)
+        ->whereNotIn('id', $inputDetailIds)
+        ->delete();
+
+    // Loop through each detail_transaksi
+    foreach ($request->detail_transaksi as $key => $item) {
+        $barang = Barang::findOrFail($item['barang_id']);
+        $jumlahBarang = $item['jumlah_barang'];
+
+        if ($barang->stok_barang < $jumlahBarang) {
+            return redirect()->back()->with('error', "Stok tidak mencukupi untuk barang: {$barang->nama_barang}.");
+        }
+
+        // Adjust total_harga to add three zeros by multiplying it by 1000
+        $totalHarga = $item['total_harga'] * 1000;
+
+        // Update or create the detail transaction
+        DetailTransaksi::updateOrCreate(
+            ['id' => $item['id'] ?? null],
+            [
+                'transaksi_id'   => $transaksi->id,
+                'barang_id'      => $item['barang_id'],
+                'jumlah_barang'  => $jumlahBarang,
+                'total_harga'    => $totalHarga,
+            ]
+        );
+
+        // Decrement the stock
+        $barang->decrement('stok_barang', $jumlahBarang);
     }
-    public function update(Request $request, $id){
-        $request->validate([
-            "barang_id"         => "required",
-            "jumlah_barang"     => "required",
-            "total_harga"       => "required",
-            "metode_pembayaran" => "required",
-        ],[
-            "barang_id.required"        => "barang harus di isi ",
-            "jumlah_barang.required"    => "jumlah harus di isi ",
-            "total_harga.required"      => "totoal  nya harus di isi",
-            "metode_pembayaran.required"=> "pilih metode pembayaran yang harus di isi",
-        ]);
-        $updateDataTransaksi=[
-            "barang_id"         => $request->barang_id,
-            "jumlah_barang"     => $request->jumlah_barang,
-            "total_harga"       => $request->total_harga,
-            "metode_pembayaran" => $request->metode_pembayaran,
-        ];
 
-        Transaksi::find($id)->update($updateDataTransaksi);
-        return redirect("/transaksi")->with("success","transaksi berhasil di edit");
-    }
+    return redirect("/transaksi")->with("success", "Transaksi berhasil diupdate.");
+}
 
-    public function destroy($id)
-    {
-        // Find the record in the 'barang' table by its ID
-        $transaksi = Transaksi::findOrFail($id);
 
-        // Delete the record
-        $transaksi->delete();
 
-        // Redirect back to the 'barang' list page with a success message
-        return redirect('/transaksi')->with('success', 'Barang berhasil dihapus!');
-    }
+
+
 
 
 
@@ -136,9 +164,33 @@ class TransaksiController extends Controller
     {
         // Ambil transaksi beserta detail barang yang terkait
         $transaksis = Transaksi::with('detailTransaksi.barang')->findOrFail($id);
-        $detailll = DetailTransaksi::sum('total_harga');
 
-        return view('dokumentasi.struktransaksi', compact('transaksis','detailll'));
+        // Calculate the total payment
+        $totalPayment = $transaksis->detailTransaksi->reduce(function ($carry, $detail) {
+            return $carry + ($detail->jumlah_barang * $detail->barang->harga_barang);
+        }, 0);
+
+        return view('dokumentasi.struktransaksi', compact('transaksis', 'totalPayment'));
+    }
+
+    public function dailyReport()
+    {
+        $today = now()->format('Y-m-d'); // Get today's date
+
+        // Retrieve transactions for today with details and user info
+        $transaksis = Transaksi::with(['detailTransaksi.barang', 'user'])
+            ->whereDate('tanggal_transaksi', $today)
+            ->get();
+
+        // Calculate the total revenue and total items sold
+        $total_harga = $transaksis->flatMap->detailTransaksi->sum(function ($detail) {
+            return $detail->jumlah_barang * $detail->barang->harga_barang;
+        });
+
+        $total_barang = $transaksis->flatMap->detailTransaksi->sum('jumlah_barang');
+
+        // Return the view with the required data
+        return view('dokumentasi.struktransaksi', compact('transaksis', 'total_harga', 'total_barang'));
     }
 
 
