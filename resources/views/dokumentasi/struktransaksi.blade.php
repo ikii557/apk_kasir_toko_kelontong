@@ -76,7 +76,7 @@
                         <label for="kasir">Kasir:</label>
                         <select name="kasir" id="kasir" class="form-control">
                             <option value="">Semua Kasir</option>
-                           
+
                         </select>
                     </div>
                     <div class="col-md-3">
@@ -86,46 +86,7 @@
             </form>
 
             {{-- Laporan Pengeluaran --}}
-            <h5>Laporan Pengeluaran Barang</h5>
-            <table class="table table-bordered mt-3">
-                <thead>
-                    <tr>
-                        <th>Tanggal</th>
-                        <th>Total Barang Keluar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($dailyReport as $date => $report)
-                        <tr>
-                            <td>{{ $date }}</td>
-                            <td>{{ $report['totalPengeluaran'] }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-
-            {{-- Laporan Pemasukan --}}
-            <h5>Laporan Pemasukan Harian</h5>
-            <table class="table table-bordered mt-3">
-                <thead>
-                    <tr>
-                        <th>Tanggal</th>
-                        <th>Total Pemasukan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($dailyReport as $date => $report)
-                        <tr>
-                            <td>{{ $date }}</td>
-                            <td>Rp {{ number_format($report['totalPemasukan'], 0, ',', '.') }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
+           
 
 
 

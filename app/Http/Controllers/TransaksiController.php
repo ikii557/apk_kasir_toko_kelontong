@@ -170,26 +170,7 @@ public function update(Request $request, $id)
         return view('dokumentasi.struktransaksi', compact('transaksis', 'totalPayment'));
     }
 
-    public function dailyReport()
-    {
-        $today = now()->format('Y-m-d'); // Get today's date
-
-        // Retrieve transactions for today with details and user info
-        $transaksis = Transaksi::with(['detailTransaksi.barang', 'user'])
-            ->whereDate('tanggal_transaksi', $today)
-            ->get();
-
-        // Calculate the total revenue and total items sold
-        $total_harga = $transaksis->flatMap->detailTransaksi->sum(function ($detail) {
-            return $detail->jumlah_barang * $detail->barang->harga_barang;
-        });
-
-        $total_barang = $transaksis->flatMap->detailTransaksi->sum('jumlah_barang');
-
-        // Return the view with the required data
-        return view('dokumentasi.struktransaksi', compact('transaksis', 'total_harga', 'total_barang'));
-    }
-
+    
 
 
 }
