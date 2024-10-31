@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Barang;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -17,11 +16,13 @@ class Transaksi extends Model
         'metode_pembayaran',
     ];
 
-    // Define the relationship with the Barang model
-   public function detailtransaksi(){
-    return $this->hasMany(DetailTransaksi::class);
-   }
+    // Relationship with DetailTransaksi model
+    public function detailtransaksi()
+    {
+        return $this->hasMany(DetailTransaksi::class);
+    }
 
+    // Relationship with User model for the cashier
     public function user()
     {
         return $this->belongsTo(User::class, 'kasir');

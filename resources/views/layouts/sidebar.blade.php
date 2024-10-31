@@ -60,7 +60,19 @@
                             <li><a href="/logout">Logout</a></li>
                         </ul>
                     </li>
+                    <!-- <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                        <i class="bi bi-flag-fill"> Data Laporan</i><span class="nav-text"></span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="/logout">Pemasukan</a></li>
+                            <li><a href="/report">Pengeluaran</a></li>
+
+                        </ul>
+                    </li> -->
+
                 </ul>
+
             </div>
         </div>
         <!--**********************************
