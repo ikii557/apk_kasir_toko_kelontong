@@ -1,64 +1,33 @@
 @extends('layouts.app')
 @section('content')
 
-
-            <div class="row page-titles mx-0">
-                <div class="col p-md-0">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
-                    </ol>
-                </div>
-            </div>
-            <!-- row -->
-
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-4 col-xl-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="media align-items-center mb-4">
-                                    <img class="mr-3" src="{{asset('assets/images/avatar/11.png')}}" width="80" height="80" alt="">
-                                    <div class="media-body">
-                                        <h3 class="mb-0">{{Auth::user()->nama}}</h3>
-                                        <p class="text-muted mb-0">Madura</p>
-                                    </div>
-                                </div>
-
-                                <div class="row mb-5">
-                                    <div class="col">
-                                        <div class="card card-profile text-center">
-                                            <span class="mb-1 text-primary"><i class="icon-people"></i></span>
-                                            <h3 class="mb-0">263</h3>
-                                            <p class="text-muted px-4">Following</p>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="card card-profile text-center">
-                                            <span class="mb-1 text-warning"><i class="icon-user-follow"></i></span>
-                                            <h3 class="mb-0">263</h3>
-                                            <p class="text-muted">Followers</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 text-center">
-                                        <button class="btn btn-info px-5"><a href="/editprofile" class="text-white">Edit Profile</a>
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <h4>Bio</h4>
-                                <p class="text-muted">Hi, I'm Pikamy, has been the industry standard dummy text ever since the 1500s.</p>
-                                <ul class="card-profile__info">
-                                    <li class="mb-1"><strong class="text-dark mr-4">Mobile</strong> <span>{{Auth::user()->no_hp}}</span></li>
-                                    <li><strong class="text-dark mr-4">Email</strong> <span>{{Auth::user()->email}}</span></li>
-                                </ul>
-                            </div>
-                        </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-4 col-xl-3">
+            <div class="card">
+                <!-- Profile Background Section with Cover Image -->
+                <div class="profile-background position-relative" style="background-image: url('{{ asset('assets/images/imgs/6.png') }}'); background-size: cover; background-position: center; height: 150px; border-radius: 0.375rem 0.375rem 0 0;">
+                    <div class="profile-image-container" style="position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%);">
+                        <img class="rounded-circle border border-white" src="{{ asset('assets/images/avatar/11.png') }}" width="80" height="80" alt="">
                     </div>
-                    
+                </div>
+
+                <!-- Profile Info Section -->
+                <div class="card-body text-center" style="margin-top: 40px;">
+                    <h3 class="mb-0">{{ Auth::user()->nama }}</h3>
+                    <p class="text-muted mb-1">Madura</p>
+
+                    <ul class="list-unstyled text-start mt-3">
+                        <li class="mb-1"><strong class="text-dark">Mobile:</strong> <span>{{ Auth::user()->no_hp }}</span></li>
+                        <li><strong class="text-dark">Email:</strong> <span>{{ Auth::user()->email }}</span></li>
+                    </ul>
+
+                    <!-- Edit Profile Button -->
+                    <button class="btn btn-primary mt-3">Edit Profile</button>
                 </div>
             </div>
-            <!-- #/ container -->
-
+        </div>
+    </div>
+</div>
 
 @endsection

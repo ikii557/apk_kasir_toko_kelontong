@@ -17,7 +17,7 @@ use App\Models\DetailTransaksi;
                                         <input type="text"  class="text-control p-2" name=search value="{{request('search')}}">
                                         <button class="btn btn-primary">cari</button>
                                     </div>
-                                    <div class="float-right"><a href="/tambahtransaksi" class="btn btn-primary">Tambah Transaksi</a></div>
+                                    <div class="float-right"><a href="/tambahtransaksi" class="btn btn-primary {{ auth()->user()->id == 1 ? 'd-none' : '' }}">Tambah Transaksi</a></div>
                             </form>
                             </div>
                             <div class="card-body">
