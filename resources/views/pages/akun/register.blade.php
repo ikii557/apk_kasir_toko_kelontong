@@ -56,6 +56,17 @@
                             <p class="text-danger">{{$message}}</p>
                     @enderror
                 </div>
+                <div class="form-group">
+                    <label><strong>Role</strong></label>
+                    <select name="role" class="form-control">
+                        <option value="admin">Admin</option>
+                        <option value="superadmin">Super Admin</option>
+                    </select>
+                    @error('role')
+                        <p class="text-danger">{{$message}}</p>
+                    @enderror
+                </div>
+
 
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary btn-block mt-2">REGISTER</button>

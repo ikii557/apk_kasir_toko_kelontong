@@ -12,7 +12,7 @@ class Transaksi extends Model
     protected $fillable = [
         'no_transaksi',
         'tanggal_transaksi',
-        'kasir',
+        'user_id',
         'metode_pembayaran',
     ];
 
@@ -25,6 +25,6 @@ class Transaksi extends Model
     // Relationship with User model for the cashier
     public function user()
     {
-        return $this->belongsTo(User::class, 'kasir');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

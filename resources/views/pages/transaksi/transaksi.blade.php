@@ -17,7 +17,7 @@ use App\Models\DetailTransaksi;
                                         <input type="text"  class="text-control p-2" name=search value="{{request('search')}}">
                                         <button class="btn btn-primary">cari</button>
                                     </div>
-                                    <div class="float-right"><a href="/tambahtransaksi" class="btn btn-primary {{ auth()->user()->id == 1 ? 'd-none' : '' }}">Tambah Transaksi</a></div>
+                                    <div class="float-right"><a href="/tambahtransaksi" class="btn btn-primary ">Tambah Transaksi</a></div>
                             </form>
                             </div>
                             <div class="card-body">
@@ -43,7 +43,7 @@ use App\Models\DetailTransaksi;
                                                 <td>{{$no +1}}</td>
                                                 <td>{{$transaksi->no_transaksi}}</td>
                                                 <td>{{$transaksi->tanggal_transaksi}}</td>
-                                                <td>{{Auth::user()->nama}}</td>
+                                                <td>{{$transaksi->user->nama}}</td>
                                                 @php
                                                     $detailtransaksis = DetailTransaksi::where('transaksi_id', $transaksi->id)->get();
                                                 @endphp
@@ -78,9 +78,9 @@ use App\Models\DetailTransaksi;
 
                                                 <td>{{$transaksi->metode_pembayaran}}</td>
 
-                                                <td><span><a href="/edittransaksi/{{$transaksi->id}}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a>
-                                                <a href="/destroy/{{$transaksi->id}}" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a>
-                                                <a href="/print/{{$transaksi->id}}" data-toggle="tooltip" data-placement="top" title="Print"><i class="bi bi-printer-fill"></i></a> </span>
+                                                <td><span class="{{ auth()->user()->role == 'admin' ? 'd-none' : '' }}"><a href="/edittransaksi/{{$transaksi->id}}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a>
+                                                <a href="/destroy/{{$transaksi->id}}" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
+                                                <span><a href="/print/{{$transaksi->id}}" data-toggle="tooltip" data-placement="top" title="Print"><i class="bi bi-printer-fill"></i></a> </span>
                                                 </td>
 
                                         </tr>

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('no_transaksi');
             $table->date('tanggal_transaksi');
+            $table->unsignedBigInteger('user_id');
             $table->enum('metode_pembayaran', ['tunai','debit','kredit']);
             $table->timestamps();
         });
