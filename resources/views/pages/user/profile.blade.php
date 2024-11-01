@@ -16,6 +16,9 @@
                 <div class="card-body text-center" style="margin-top: 40px;">
                     <h3 class="mb-0">{{ Auth::user()->nama }}</h3>
                     <p class="text-muted mb-1">Madura</p>
+                    <p><ul class="list-unstyled text-start mt-3">
+                        <li class="mb-1"><strong class="text-dark">Jabatan:</strong> <span>{{ Auth::user()->role }}</span></li>
+                    </ul></p>
 
                     <ul class="list-unstyled text-start mt-3">
                         <li class="mb-1"><strong class="text-dark">Mobile:</strong> <span>{{ Auth::user()->no_hp }}</span></li>

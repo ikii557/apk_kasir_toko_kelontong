@@ -36,6 +36,7 @@ class AuthController extends Controller
             'no_hp'    => $request->no_hp,
             'email'    => $request->email,
             'password' => bcrypt($request->password),
+            'role'     => $request->role
         ]);
 
         // Redirect ke halaman login setelah berhasil registrasi

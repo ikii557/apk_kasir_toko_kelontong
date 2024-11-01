@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-
+{{ auth()->user()->id == 1 ? 'd-none' : '' }}
 
 
 

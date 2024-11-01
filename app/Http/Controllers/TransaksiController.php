@@ -57,7 +57,9 @@ class TransaksiController extends Controller
     $transaksi = Transaksi::create([
         'no_transaksi' => $request->no_transaksi,
         'tanggal_transaksi' => $request->tanggal_transaksi,
+        'user_id'           => $request->user_id,
         'metode_pembayaran' => $request->metode_pembayaran,
+
     ]);
 
     // Handle detail transaction and update stock
@@ -170,7 +172,7 @@ public function update(Request $request, $id)
         return view('dokumentasi.struktransaksi', compact('transaksis', 'totalPayment'));
     }
 
-    
+
 
 
 }

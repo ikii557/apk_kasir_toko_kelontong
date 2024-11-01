@@ -31,7 +31,7 @@
                     <!-- Nama Kasir (Admin) -->
                     <div class="form-group">
                         <label for="kasir">Kasir (Admin):</label>
-                        <input type="text" name="kasir" class="form-control" value="{{Auth::user()->nama}}" readonly>
+                        <input type="text" name="kasir" class="form-control" value="{{Auth::user()->role}}" readonly>
 
                     </div>
                     <div class="form-group">
