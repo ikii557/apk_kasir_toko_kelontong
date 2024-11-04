@@ -159,6 +159,21 @@ public function update(Request $request, $id)
 
 
 
+public function destroy($id)
+{
+    // Temukan data transaksi berdasarkan ID
+    $transaksi = Transaksi::findOrFail($id);
+
+    // Hapus detail transaksi terkait
+    $transaksi->detailTransaksi()->delete();
+
+    // Hapus data transaksi
+    $transaksi->delete();
+
+    // Arahkan kembali ke halaman transaksi dengan pesan sukses
+    return redirect('/transaksi')->with('success', 'Transaksi berhasil dihapus!');
+}
+
 
 
 

@@ -76,18 +76,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/transaksi', [TransaksiController::class, 'index']);
         Route::get('/tambahtransaksi', [TransaksiController::class, 'create']);
         Route::post('/store/transaksi', [TransaksiController::class, 'store']);
+        Route::get('/print/{id}', [TransaksiController::class, 'print'])->name('transaksi.print');
     });
 
     // Rute khusus untuk Super Admin (akses penuh termasuk edit dan hapus transaksi)
-    Route::middleware(['role:super admin'])->group(function () {
-
-        // Full access to Barang Management (Super Admin access)
-        Route::get('/destroy/barang/{id}', [BarangController::class, 'destroy']);
+    Route::middleware(['role:superadmin'])->group(function () {
 
         // Full access to Transaksi Management (Super Admin access)
         Route::get('/edittransaksi/{id}', [TransaksiController::class, 'edit']);
         Route::post('/updatetransaksi/{id}', [TransaksiController::class, 'update']);
         Route::get('/destroy/transaksi/{id}', [TransaksiController::class, 'destroy']);
-        Route::get('/print/{id}', [TransaksiController::class, 'print'])->name('transaksi.print');
     });
 });
