@@ -24,42 +24,46 @@ class TransaksiController extends Controller
     public function create(){
         $barangs = Barang::all();
         $transaksis = Transaksi::all();
-        return view("pages.transaksi.tambahtransaksi", compact("transaksis","barangs"));
+         // Get the latest transaction number and increment it
+        $lastTransaksi = Transaksi::orderBy('created_at', 'desc')->first();
+        $newTransaksiNumber = $lastTransaksi ? 'TR-' . str_pad((int) substr($lastTransaksi->no_transaksi, 3) + 1, 4, '0', STR_PAD_LEFT) : 'TR-0001';
+        return view("pages.transaksi.tambahtransaksi", compact("transaksis","barangs", "newTransaksiNumber"));
     }
-    // Store new transaction
-    public function store(Request $request)
+
+public function store(Request $request)
+
 {
     // Validate the input data
     $request->validate([
         'no_transaksi' => 'required|unique:transaksis,no_transaksi',
-        'tanggal_transaksi' => 'required',
         'metode_pembayaran' => 'required',
     ], [
         'no_transaksi.required' => 'Nomor transaksi harus diisi',
         'no_transaksi.unique' => 'Nomor transaksi sudah terdaftar',
-        'tanggal_transaksi.required' => 'Tanggal transaksi harus diisi',
         'metode_pembayaran.required' => 'Metode pembayaran harus diisi'
     ]);
+
+
+
+    // Set transaction date to current date if not provided
+    $tanggalTransaksi = $request->tanggal_transaksi ?? now();
 
     // Check if stock is sufficient for all items before creating the transaction
     foreach ($request->barang_id as $index => $nama_barang) {
         $jumlahbarang = $request->jumlah_barang[$index];
         $barang = Barang::find($nama_barang);
 
-        // Check if stock is sufficient
         if ($barang->stok_barang < $jumlahbarang) {
-            // Redirect back with an error message if stock is insufficient
-            return redirect()->back()->with('error', "Stok tidak mencukupi untuk barang: $barang->nama_barang. Silakan periksa kembali jumlah barang.");
+            return redirect()->back()->with('error', "Stok tidak mencukupi untuk barang: $barang->nama_barang.");
         }
     }
 
-    // Create new transaction if all items have sufficient stock
-    $transaksi = Transaksi::create([
-        'no_transaksi' => $request->no_transaksi,
-        'tanggal_transaksi' => $request->tanggal_transaksi,
-        'user_id'           => $request->user_id,
+    // Create new transaction with the logged-in user's ID
+    $transaksi = Transaksi::create(attributes: [
+        'no_transaksi' => $request->no_transaksi  ,
+        'tanggal_transaksi' => $tanggalTransaksi,
         'metode_pembayaran' => $request->metode_pembayaran,
-
+        'user_id' => Auth::id(), // Set the user ID
     ]);
 
     // Handle detail transaction and update stock
@@ -68,7 +72,6 @@ class TransaksiController extends Controller
         $barang = Barang::find($nama_barang);
         $total_harga = $barang->harga_barang * $jumlahbarang;
 
-        // Store detail transaction
         DetailTransaksi::create([
             'transaksi_id' => $transaksi->id,
             'barang_id' => $nama_barang,
@@ -76,13 +79,13 @@ class TransaksiController extends Controller
             'total_harga' => $total_harga,
         ]);
 
-        // Update stock of the item (barang)
         $barang->decrement('stok_barang', $jumlahbarang);
     }
 
-    // Redirect to the transaction page with a success message
     return redirect('/transaksi')->with('success', 'Transaksi berhasil disimpan.');
 }
+
+
 
 
 
