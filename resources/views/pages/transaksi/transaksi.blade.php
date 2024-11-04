@@ -79,7 +79,7 @@ use App\Models\DetailTransaksi;
                                                 <td>{{$transaksi->metode_pembayaran}}</td>
 
                                                 <td><span class="{{ auth()->user()->role == 'admin' ? 'd-none' : '' }}"><a href="/edittransaksi/{{$transaksi->id}}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a>
-                                                <a href="/destroy/{{$transaksi->id}}" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
+                                                <a href="/destroy/transaksi/{{$transaksi->id}}" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
                                                 <span><a href="/print/{{$transaksi->id}}" data-toggle="tooltip" data-placement="top" title="Print"><i class="bi bi-printer-fill"></i></a> </span>
                                                 </td>
 

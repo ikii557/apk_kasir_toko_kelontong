@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div class=""><a href="/transaksi"><i class="bi bi-arrow-left-circle">Kembali ke transaksi</i></a></div>
 <div class="container">
     <h2>Edit Transaksi</h2>
 

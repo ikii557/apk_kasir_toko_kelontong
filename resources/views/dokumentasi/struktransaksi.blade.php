@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<di class="row">
+
+<div class=""><a href="/transaksi"><i class="bi bi-arrow-left-circle">Kembali ke transaksi</i></a></div>
+<div class="row">
     <div class="col-lg-3 mt-4">
         <h4 class="p-2">Print Struk Transaksi</h4>
         <div class="card">
@@ -15,7 +17,7 @@
                 <div>
                     <p><strong>ID Transaksi:</strong> <span class="float-right">{{ $transaksis->no_transaksi }}</span></p>
                     <p><strong>Tanggal Transaksi:</strong> <span class="float-right">{{ $transaksis->tanggal_transaksi }}</span></p>
-                    <p><strong>Kasir:</strong><span class="float-right">{{ Auth::user()->nama }}</span></p>
+                    <p><strong>Kasir:</strong><span class="float-right">{{$transaksis->user->nama}}</span></p>
                     <hr>
                     <h5>Barang yang Dibeli:</h5>
                     <table class="table table-sm">
@@ -84,12 +86,9 @@
                     </div>
                 </div>
             </form>
-
-            {{-- Laporan Pengeluaran --}}
-           
-
-
-
+        </div>
+    </div>
+</div>
 </div>
 
 

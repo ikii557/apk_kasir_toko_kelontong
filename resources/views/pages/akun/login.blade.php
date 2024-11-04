@@ -30,7 +30,7 @@
 <body>
     <div class="container">
         <div class="auth-form border">
-            <h4 class="text-center mb-4">Log In Untuk Masuk</h4>
+            <h4 class="text-center mb-4 "><a href="/register" class="text-dark " style="text-decoration: none;">Log In </a> Untuk Masuk</h4>
             <form action="/store/login" method="post" class="mt-4">
                 @csrf
                 <div class="form-group">
@@ -53,7 +53,7 @@
                 </div>
             </form>
             <div class="new-account mt-3">
-                <p>Belum Punya Akun Silahkan? <a class="text-primary" href="/register">Register</a></p>
+                <p>Silahkan Masuk karna anda sudah di daftarkan oleh SuperAdmin TerimaKasih</p>
             </div>
         </div>
     </div>

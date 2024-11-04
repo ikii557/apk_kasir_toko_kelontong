@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div class=""><a href="/transaksi"><i class="bi bi-arrow-left-circle">Kembali ke transaksi</i></a></div>
 <div class="row">
     <div class="col-lg-12 mt-4">
 
@@ -25,7 +26,7 @@
                     <!-- Nama Kasir (Admin) -->
                     <div class="form-group">
                         <label for="kasir">Kasir (Admin):</label>
-                        <input type="text" name="kasir" class="form-control" value="{{ Auth::user()->role }}" readonly>
+                        <input type="text" name="kasir" class="form-control" value="{{ Auth::user()->nama }}" readonly>
                     </div>
 
                     <!-- Metode Pembayaran -->
