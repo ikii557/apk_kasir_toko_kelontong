@@ -49,9 +49,10 @@ use App\Models\DetailTransaksi;
                                                 @endphp
                                                 <td>
                                                     @foreach ($detailtransaksis as $detailtransaksi)
-                                                        {{$detailtransaksi->barang->nama_barang}},
+                                                        {{ $detailtransaksi->barang?->nama_barang ?? "nama barang tidak ada dalam daftar" }},
                                                     @endforeach
                                                 </td>
+
 
                                                 @if ($transaksi->detailtransaksi->sum('total_harga') >= 0 && $transaksi->detailtransaksi->sum('total_harga')  < 100000)
                                                     <td><span class="label gradient-3 btn-rounded">{{ $transaksi->detailtransaksi->sum('jumlah_barang') }}</span></td>

@@ -30,6 +30,35 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-4 col-xl-9">
+            <div class="card">
+                <h4 class="p-4">Data kasir <span class="float-right"><a href="/tambahkasir" class="btn btn-primary">Tambah Kasir</a></span></h4>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>No Hp</th>
+                            <th>Email</th>
+                            <th>Jabatan</th>
+                            <th>Opsi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($users as $no=> $kasir )
+                        <tr>
+                            <td>{{$no +1}}</td>
+                            <td>{{$kasir->nama}}</td>
+                            <td>{{$kasir->no_hp}}</td>
+                            <td>{{$kasir->email}}</td>
+                            <td>{{$kasir->role}}</td>
+                            <td></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 

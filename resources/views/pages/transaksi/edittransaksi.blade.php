@@ -19,7 +19,7 @@
                 <!-- Nama Kasir -->
                 <div class="form-group">
                     <label for="kasir">Kasir (Admin):</label>
-                    <input type="text" name="kasir" class="form-control" value="{{ Auth::user()->nama }}" readonly>
+                    <input type="text" name="kasir" class="form-control" value="{{ $transaksi->user->nama }}" readonly>
                 </div>
 
                 <div id="items-container">

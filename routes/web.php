@@ -53,9 +53,9 @@ Route::middleware(['auth'])->group(function () {
         });
 
         // Profil
-        Route::get('/profile', function () {
-            return view('pages.user.profile');
-        });
+        Route::get('/profile', [Controller::class,'profile']);
+        Route::get('/tambahkasir', [Controller::class, 'create']);
+        Route::post('/store/user', [Controller::class, 'store']);
         Route::get('/editprofile', [Controller::class, 'edit']);
         Route::post('/store/user', [Controller::class, 'store']);
 
@@ -71,6 +71,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/store/barang', [BarangController::class, 'store']);
         Route::get('/editbarang/{id}', [BarangController::class, 'edit']);
         Route::post('/updatebarang/{id}', [BarangController::class, 'update']);
+        Route::get('/destroy/barang/{id}', [BarangController::class, 'destroy']);
 
         // Transaksi (view and create only for admin and super admin)
         Route::get('/transaksi', [TransaksiController::class, 'index']);
