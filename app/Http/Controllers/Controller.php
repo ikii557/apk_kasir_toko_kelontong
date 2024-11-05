@@ -28,7 +28,7 @@ class Controller extends BaseController
     public function store(Request $request)
 
     {
-        
+
         $request->validate([
             'nama'      => 'required|max:255',
             'no_hp'     => 'required',
@@ -55,9 +55,11 @@ class Controller extends BaseController
     }
 
     // Show the form for editing a specific user
-    public function edit(User $user)
+    public function edit($id)
     {
-        return view('users.edit', compact('user'));
+        $user = User::find($id); // Jika mencari satu pengguna berdasarkan id
+        return view('nama_view', compact('user'));
+
     }
 
     // Update a specific user's information
