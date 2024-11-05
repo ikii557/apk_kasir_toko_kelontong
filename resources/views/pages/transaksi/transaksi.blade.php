@@ -67,15 +67,16 @@ use App\Models\DetailTransaksi;
 
 
 
-                                                @if ($transaksi->detailtransaksi->sum('total_harga') >= 0 && $transaksi->detailtransaksi->sum('total_harga')  < 100000)
-                                                    <td><span class="label gradient-3 btn-rounded">Rp. {{ $transaksi->detailtransaksi->sum('total_harga') }}</span></td>
+                                                @if ($transaksi->detailtransaksi->sum('total_harga') >= 0 && $transaksi->detailtransaksi->sum('total_harga') < 100000)
+                                                    <td><span class="label gradient-3 btn-rounded">Rp. {{ number_format($transaksi->detailtransaksi->sum('total_harga'), 0, ',', '.') }}</span></td>
                                                 @endif
-                                                @if ($transaksi->detailtransaksi->sum('total_harga') >= 100000  && $transaksi->detailtransaksi->sum('total_harga')  < 1000000)
-                                                    <td><span class="label gradient-2 btn-rounded">Rp. {{ $transaksi->detailtransaksi->sum('total_harga') }}</span></td>
+                                                @if ($transaksi->detailtransaksi->sum('total_harga') >= 100000 && $transaksi->detailtransaksi->sum('total_harga') < 1000000)
+                                                    <td><span class="label gradient-2 btn-rounded">Rp. {{ number_format($transaksi->detailtransaksi->sum('total_harga'), 0, ',', '.') }}</span></td>
                                                 @endif
                                                 @if ($transaksi->detailtransaksi->sum('total_harga') >= 1000000)
-                                                    <td><span class="label gradient-1 btn-rounded">Rp. {{ $transaksi->detailtransaksi->sum('total_harga') }}</span></td>
+                                                    <td><span class="label gradient-1 btn-rounded">Rp. {{ number_format($transaksi->detailtransaksi->sum('total_harga'), 0, ',', '.') }}</span></td>
                                                 @endif
+
 
                                                 <td>{{$transaksi->metode_pembayaran}}</td>
 

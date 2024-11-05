@@ -51,7 +51,7 @@
                                 <input type="text" name="detail_transaksi[{{ $key }}][total_harga]" value="{{ $item->total_harga }}"  class="form-control total-harga" data-index="{{ $key }}" readonly>
                             </div>
                             <!-- Remove button for existing items -->
-                            <button type="button" class="btn btn-danger btn-sm remove-item" data-index="{{ $key }}">X</button>
+                            <button type="button" class="btn btn-danger btn-sm remove-item float-right" data-index="{{ $key }}">X</button>
                         </div>
                     @endforeach
                 </div>
@@ -70,24 +70,24 @@ document.addEventListener('DOMContentLoaded', function () {
     let itemIndex = {{ count($transaksi->detailTransaksi) }};
 
     function calculateTotal(index) {
-        const selectedOption = document.querySelector(`select[data-index="${index}"] option:checked`);
-        const hargaBarang = parseFloat(selectedOption.getAttribute('data-harga'));
-        const stokBarang = parseInt(selectedOption.getAttribute('data-stok'));
-        const jumlahInput = document.querySelector(`input[data-index="${index}"].jumlah-input`);
-        const totalHargaInput = document.querySelector(`input[data-index="${index}"].total-harga`);
-        const jumlahBarang = parseInt(jumlahInput.value);
+    const selectedOption = document.querySelector(`select[data-index="${index}"] option:checked`);
+    const hargaBarang = parseFloat(selectedOption.getAttribute('data-harga'));
+    const stokBarang = parseInt(selectedOption.getAttribute('data-stok'));
+    const jumlahInput = document.querySelector(`input[data-index="${index}"].jumlah-input`);
+    const totalHargaInput = document.querySelector(`input[data-index="${index}"].total-harga`);
+    const jumlahBarang = parseInt(jumlahInput.value);
 
-        if (jumlahBarang > stokBarang) {
-            alert(`Stok tidak mencukupi. Stok tersedia: ${stokBarang}`);
-            jumlahInput.value = stokBarang;
-            return;
-        }
-
-        if (!isNaN(hargaBarang) && !isNaN(jumlahBarang)) {
-            const totalHarga = hargaBarang * jumlahBarang;
-            totalHargaInput.value = totalHarga.toLocaleString('id-ID');
-        }
+    if (jumlahBarang > stokBarang) {
+        alert(`Stok tidak mencukupi. Stok tersedia: ${stokBarang}`);
+        jumlahInput.value = stokBarang;
+        return;
     }
+
+    if (!isNaN(hargaBarang) && !isNaN(jumlahBarang)) {
+        const totalHarga = hargaBarang * jumlahBarang;
+        totalHargaInput.value = totalHarga; // No formatting, plain number
+    }
+}
 
     document.getElementById('add-item').addEventListener('click', () => {
         const newItem = `
