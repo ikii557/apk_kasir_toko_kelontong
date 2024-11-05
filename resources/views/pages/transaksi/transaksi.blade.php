@@ -7,8 +7,7 @@ use App\Models\DetailTransaksi;
 
 
                         <div class="row">
-                            <div class="col-lg-12 mt-4">
-
+                            <div class="col-lg-12 mt-12">
                             <div class="card ">
                             <h4 class="p-4">Data Transaksi</h4>
                             <div class="p-4 me-4">

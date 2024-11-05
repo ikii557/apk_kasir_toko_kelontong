@@ -21,20 +21,14 @@
                     </div>
                 </div>
                 <div class="header-left">
-                    <div class="input-group icons">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
-                        </div>
-                        <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">
-                        <div class="drop-down animated flipInX d-md-none">
-                            <form action="#">
-                                <input type="text" class="form-control" placeholder="Search">
-                            </form>
-                        </div>
+                <div class="text-center" style="width: 500px; overflow: hidden; margin: 0 auto;">
+                        <marquee class="mt-4" behavior="scroll" direction="left" style="font-size: 18px; color: #7790FE;">
+                            Selamat datang di aplikasi web toko kelontong makmur
+                        </marquee>
                     </div>
                 </div>
 
-                
+
                 <div class="header-right">
                     <ul class="clearfix">
 

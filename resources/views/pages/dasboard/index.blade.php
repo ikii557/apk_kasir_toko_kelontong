@@ -27,7 +27,7 @@
                                     <h2 class="text-white">{{ $stokBarang }}</h2>
                                     <p class="text-white mb-0">Jan - March 2024</p>
                                 </div>
-                                <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
+                                <span class="float-right display-5 opacity-5"><i class="bi bi-boxes"></i></span>
                             </div>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                                     <h2 class="text-white">Rp.{{$detail}}</h2>
                                     <p class="text-white mb-0">Jan - March 2024</p>
                                 </div>
-                                <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
+                                <span class="float-right display-5 opacity-5"><i class="bi bi-cash-coin"></i></span>
                             </div>
                         </div>
                     </div>

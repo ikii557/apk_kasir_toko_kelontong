@@ -35,18 +35,18 @@
                     <li class="nav-label">Apps</li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-envelope menu-icon"></i> <span class="nav-text">Data Transaksi</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="/transaksi">transaksi</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-grid menu-icon"></i> <span class="nav-text">Data Barang</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="/barang">barang</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-envelope menu-icon"></i> <span class="nav-text">Data Transaksi</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="/transaksi">transaksi</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">Pages</li>

@@ -60,9 +60,9 @@
                         <tr>
                             <td>{{$no +1}}</td>
                             <td>{{$kasir->nama}}</td>
-                            <td>{{$kasir->no_hp}}</td>
+                            <td><i class="bi bi-whatsapp"></i> {{$kasir->no_hp}}</td>
                             @if(Auth::user()->role == 'superadmin')
-                            <td>{{$kasir->email}}</td>
+                            <td><i class="bi bi-envelope-dash"></i> {{$kasir->email}}</td>
                             @endif
                             <td>{{$kasir->role}}</td>
                             @if(Auth::user()->role == 'superadmin')
