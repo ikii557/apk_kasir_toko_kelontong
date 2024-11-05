@@ -6,7 +6,7 @@
 
         <div class="card">
             <div class="p-4 mt-4 me-4">
-            <form action="/store/register" method="post" class="mt-4">
+            <form action="/store/user" method="post" class="mt-4">
                 @csrf
                 <div class="form-group">
                     <label><strong>Nama</strong></label>
