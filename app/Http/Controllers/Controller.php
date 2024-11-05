@@ -21,29 +21,37 @@ class Controller extends BaseController
     // Display the form for creating a new user
     public function create()
     {
-        return view('pages.user.tambah');
+        return view('pages.user.tambahuser');
     }
 
     // Store a newly created user
     public function store(Request $request)
+
     {
+        
         $request->validate([
-            'nama' => 'required|string|max:255',
-            'no_hp' => 'required|string|max:15',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|in:admin,superadmin',
+            'nama'      => 'required|max:255',
+            'no_hp'     => 'required',
+            'email'     => 'required|email|unique:users,email',
+            'password'  => 'required',
+        ],[
+            'nama.required'         => 'Nama harus diisi',
+            'nama.max'              => 'Nama maksimal 255 karakter',
+            'no_hp.required'        => 'no hp harus benar',
+            'email.required'        => 'Email harus diisi',
+            'email.unique'          => 'Email sudah terdaftar',
+            'password.required'     => 'Password harus diisi',
+            'password.min'          => 'Password harus minimal 8 karakter',
         ]);
-
+        // Simpan user baru
         User::create([
-            'nama' => $request->nama,
-            'no_hp' => $request->no_hp,
-            'email' => $request->email,
+            'nama'     => $request->nama,
+            'no_hp'    => $request->no_hp,
+            'email'    => $request->email,
             'password' => bcrypt($request->password),
-            'role' => $request->role,
+            'role'     => $request->role
         ]);
-
-        return redirect()->route('users.index')->with('success', 'Pengguna berhasil ditambahkan.');
+        return redirect('/profile')->with('success', 'Pengguna berhasil ditambahkan.');
     }
 
     // Show the form for editing a specific user

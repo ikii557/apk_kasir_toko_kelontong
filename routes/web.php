@@ -54,10 +54,6 @@ Route::middleware(['auth'])->group(function () {
 
         // Profil
         Route::get('/profile', [Controller::class,'profile']);
-        Route::get('/tambahkasir', [Controller::class, 'create']);
-        Route::post('/store/user', [Controller::class, 'store']);
-        Route::get('/editprofile', [Controller::class, 'edit']);
-        Route::post('/store/user', [Controller::class, 'store']);
 
         // Laporan
         Route::get('/report', [ReportController::class, 'index'])->name('report.index');
@@ -83,6 +79,8 @@ Route::middleware(['auth'])->group(function () {
     // Rute khusus untuk Super Admin (akses penuh termasuk edit dan hapus transaksi)
     Route::middleware(['role:superadmin'])->group(function () {
 
+        Route::get('/tambahkasir', [Controller::class, 'create']);
+        Route::post('/store/user', [Controller::class, 'store']);
         // Full access to Transaksi Management (Super Admin access)
         Route::get('/edittransaksi/{id}', [TransaksiController::class, 'edit']);
         Route::post('/updatetransaksi/{id}', [TransaksiController::class, 'update']);
