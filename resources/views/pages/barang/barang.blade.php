@@ -45,7 +45,7 @@
                         <h1>Daftar Barang</h1>
                         <form action="/barang" method="get">
                             <div class="input-group">
-                                <input type="text"  class="text-control" name=search value="{{request('search')}}">
+                                <input type="text"  class="text-control" name=search value=" {{request('search')}}">
                                 <button class="btn btn-primary">cari</button>
                             </div>
                         </form>

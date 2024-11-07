@@ -48,6 +48,8 @@ Route::middleware(['auth'])->group(function () {
     // Halaman Admin Dashboard (akses oleh admin dan super admin)
     Route::middleware(['role:admin,superadmin'])->group(function () {
         Route::get('/index', [DasboardController::class, 'index']);
+        Route::get('/store/laporan', [DasboardController::class, 'sal  esReport'])->name('sales-report');
+
         Route::get('/datatable', function () {
             return view('pages.data.datatable');
         });

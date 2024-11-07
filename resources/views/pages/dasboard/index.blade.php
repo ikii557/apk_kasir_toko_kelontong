@@ -36,7 +36,8 @@
                             <div class="card-body">
                                 <h3 class="card-title text-white">Pendapatan</h3>
                                 <div class="d-inline-block">
-                                    <h2 class="text-white">Rp.{{$detail}}</h2>
+                                    <h2 class="text-white">Rp. {{ number_format($detail, 0, ',', '.') }}
+                                    </h2>
                                     <p class="text-white mb-0">Jan - March 2024</p>
                                 </div>
                                 <span class="float-right display-5 opacity-5"><i class="bi bi-cash-coin"></i></span>
@@ -55,7 +56,8 @@
                                         <div>
                                             <h4 class="mb-1">Pendapatan  Penjualan</h4>
                                             <p>total barang terjual dalam bulan ini</p>
-                                            <h3 class="m-0">Rp.{{$detail}}</h3>
+                                            <h3 class="m-0">Rp. {{ number_format($detail, 0, ',', '.') }}
+                                            </h3>
                                         </div>
                                         <div>
                                             <ul>
