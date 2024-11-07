@@ -8,6 +8,10 @@
         <h4 class="p-2">Print Struk Transaksi</h4>
         <div class="card">
             <div class="card-body">
+            <div class="float-right">
+              <a href="javascript:void(0);" onclick="window.print();"><i class="bi bi-printer"></i></a>
+            </div>
+
                 <div class="mt-4 text-center">
                     <h4>Toko Kelontong Makmur</h4>
                     <p>Jl.banjar-majenang No. 123, madura</p>
@@ -59,36 +63,7 @@
     </div>
 
 
-    <div class="p-2 mt-4 me-3">
-    <h4>Data Laporan Transaksi</h4>
-    <div class="card mt-3">
-        <div class="card-body">
-            {{-- Filter options --}}
-            <form action="/report" method="GET" class="mb-4">
-                <div class="row">
-                    <div class="col-md-3">
-                        <label for="start_date">Tanggal Mulai:</label>
-                        <input type="date" name="start_date" id="start_date" class="form-control">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="end_date">Tanggal Akhir:</label>
-                        <input type="date" name="end_date" id="end_date" class="form-control">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="kasir">Kasir:</label>
-                        <select name="kasir" id="kasir" class="form-control">
-                            <option value="">Semua Kasir</option>
 
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <button type="submit" class="btn btn-primary mt-4">Filter</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 </div>
 
 

@@ -55,10 +55,11 @@ class Controller extends BaseController
     }
 
     // Show the form for editing a specific user
-    public function edit($id)
+    public function editprofile($id)
     {
-        $user = User::find($id); // Jika mencari satu pengguna berdasarkan id
-        return view('nama_view', compact('user'));
+        $users = User::find($id);
+
+        return view('nama_view', compact('users'));
 
     }
 
@@ -88,10 +89,15 @@ class Controller extends BaseController
     }
 
     // Delete a specific user
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        $user->delete();
+        // Find the record in the 'barang' table by its ID
+        $users = User::findOrFail($id);
 
-        return redirect()->route('users.index')->with('success', 'Pengguna berhasil dihapus.');
+        // Delete the record
+        $users->delete();
+
+        // Redirect back to the 'barang' list page with a success message
+        return redirect('/profile')->with('success', 'Barang berhasil dihapus!');
     }
 }

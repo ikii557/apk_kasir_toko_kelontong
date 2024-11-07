@@ -23,7 +23,7 @@ use App\Models\DetailTransaksi;
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
                                         <thead>
-                                            <tr>
+                                            <tr class="table-primary">
                                                 <th scope="col">No</th>
                                                 <th scope="col">No transaksi</th>
                                                 <th scope="col">tanggal transaksi</th>

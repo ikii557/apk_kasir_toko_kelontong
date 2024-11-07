@@ -3,6 +3,67 @@
 
 <head>
     @include('layouts.head')
+    <style>
+    /* Print-only CSS */
+    @media print {
+        /* Hide non-essential items */
+        body * {
+            visibility: hidden;
+        }
+
+        /* Only display the card content */
+        .card, .card * {
+            visibility: visible;
+        }
+
+        /* Center the card and make it full-width */
+        .card {
+            width: 100%;
+            margin: 0 auto;
+            border: none; /* Remove border */
+            box-shadow: none;
+        }
+
+        /* Adjust spacing and remove colors */
+        .card-body, .table {
+            padding: 0;
+            margin: 0;
+            color: #000;
+        }
+
+        /* Set fonts for print readability */
+        h4, p, th, td {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Remove backgrounds and shadows */
+        .card-body, .table thead th, .table tbody td, .table {
+            background-color: #fff !important;
+            -webkit-print-color-adjust: exact;
+        }
+
+        /* Borders for table */
+        .table, .table thead th, .table tbody td {
+            border: 1px solid #000;
+        }
+
+        /* Align items properly */
+        .text-center {
+            text-align: center;
+        }
+
+        .float-right {
+            float: right;
+        }
+
+        /* Hide icons and unnecessary links */
+        .float-right a {
+            display: none;
+        }
+    }
+</style>
+
 </head>
 
 <body>

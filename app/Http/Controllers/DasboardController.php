@@ -17,10 +17,12 @@ class DasboardController extends Controller
 
 
         $detail = DetailTransaksi::sum('total_harga');
+        $formattedDetail = number_format($detail, 0, ',', '.');
 
 
 
-        return view('pages.dasboard.index', compact('produkTerjual', 'stokBarang', 'detail'));
+
+        return view('pages.dasboard.index', compact('produkTerjual', 'stokBarang', 'detail','formattedDetail'));
     }
 
 }
