@@ -42,7 +42,7 @@ use App\Models\DetailTransaksi;
                                                 <td>{{$no +1}}</td>
                                                 <td>{{$transaksi->no_transaksi}}</td>
                                                 <td>{{$transaksi->tanggal_transaksi}}</td>
-                                                <td>{{$transaksi->user->nama}}</td>
+                                                <td>{{$transaksi->user->nama }}</td>
                                                 @php
                                                     $detailtransaksis = DetailTransaksi::where('transaksi_id', $transaksi->id)->get();
                                                 @endphp

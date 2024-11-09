@@ -22,9 +22,6 @@ use App\Http\Controllers\SuperAdminController;
 */
 
 // Halaman Utama
-Route::get('/', function () {
-    return view('pages.dasboard.index2');
-});
 
 // Rute untuk pengguna tamu
 Route::middleware(['guest'])->group(function () {
@@ -35,6 +32,10 @@ Route::middleware(['guest'])->group(function () {
     // Login
     Route::get("/login", [AuthController::class, 'login'])->name('login');
     Route::post('/store/login', [AuthController::class, 'storelogin']);
+
+    Route::get('/', function () {
+        return view('pages.dasboard.index2');
+    });
 });
 
 
