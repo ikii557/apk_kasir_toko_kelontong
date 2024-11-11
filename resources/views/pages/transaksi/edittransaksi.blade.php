@@ -2,7 +2,8 @@
 
 @section('content')
 <div class=""><a href="/transaksi"><i class="bi bi-arrow-left-circle">Kembali ke transaksi</i></a></div>
-<div class="container">
+<div class="row">
+<div class="col-lg-12 mt-4">
     <h2>Edit Transaksi</h2>
 
     @if(session('success'))
@@ -61,6 +62,7 @@
                 <button type="submit" class="btn btn-primary mt-3">Edit Transaksi</button>
             </form>
         </div>
+    </div>
     </div>
 </div>
 

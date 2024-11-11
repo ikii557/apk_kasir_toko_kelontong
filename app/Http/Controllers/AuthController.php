@@ -19,7 +19,7 @@ class AuthController extends Controller
             'nama'      => 'required|max:255',
             'no_hp'     => 'required',
             'email'     => 'required|email|unique:users,email',
-            'password'  => 'required',
+            'password'  => 'required|min:8',
         ],[
             'nama.required'         => 'Nama harus diisi',
             'nama.max'              => 'Nama maksimal 255 karakter',
@@ -52,7 +52,12 @@ class AuthController extends Controller
         // Validasi input login
         $credentials = $request->validate([
             'email'    => 'required|email',
-            'password' => 'required',
+            'password' => 'required|min:8',
+        ],[
+            'email.requied' => 'email harus di isi',
+            'email.email'   => 'harus masukan email',
+            'password.required' => 'masukan password',
+            'password.min' => 'password harus 8',
         ]);
 
         // Mencoba login

@@ -22,9 +22,6 @@ use App\Http\Controllers\SuperAdminController;
 */
 
 // Halaman Utama
-Route::get('/', function () {
-    return view('pages.dasboard.index2');
-});
 
 // Rute untuk pengguna tamu
 Route::middleware(['guest'])->group(function () {
@@ -35,6 +32,10 @@ Route::middleware(['guest'])->group(function () {
     // Login
     Route::get("/login", [AuthController::class, 'login'])->name('login');
     Route::post('/store/login', [AuthController::class, 'storelogin']);
+
+    Route::get('/', function () {
+        return view('pages.dasboard.index2');
+    });
 });
 
 
@@ -81,11 +82,21 @@ Route::middleware(['auth'])->group(function () {
     // Rute khusus untuk Super Admin (akses penuh termasuk edit dan hapus transaksi)
     Route::middleware(['role:superadmin'])->group(function () {
 
+
+
+
         Route::get('/tambahkasir', [Controller::class, 'create']);
         Route::post('/store/user', [Controller::class, 'store']);
-        Route::get('/edituser/{id}', [Controller::class, 'edit']);
-        Route::post('/updateuser/{id}', [Controller::class, 'update']);
+
+
+
+        Route::get('/editprofile/{id}', [Controller::class, 'editprofile']);
+        Route::post('/updateprofile/{id}', [Controller::class, 'update']);
+
         Route::get('/destroy/user/{id}', [Controller::class, 'destroy']);
+
+
+
         // Full access to Transaksi Management (Super Admin access)
         Route::get('/edittransaksi/{id}', [TransaksiController::class, 'edit']);
         Route::post('/updatetransaksi/{id}', [TransaksiController::class, 'update']);

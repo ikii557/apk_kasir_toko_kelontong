@@ -29,7 +29,7 @@ class BarangController extends Controller
         $request->validate([
             'nama_barang'=>'required',
             'stok_barang'=> 'required',
-            'harga_barang'=> 'required',
+            'harga_barang'=> 'required', 
         ],[
             'nama_barang.required'=> 'barang harus di isi',
             'stok_barang.required'=> 'stok ahrus di isi',
