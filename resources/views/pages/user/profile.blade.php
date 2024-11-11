@@ -68,7 +68,7 @@
                             @if(Auth::user()->role == 'superadmin')
                             <td>
                                 <span>
-                                    <a href="" class="btn btn-info btn-sm" style="border-radius: 5px;">Edit</a>
+                                    <a href="/editprofile/{{$kasir->id}}" class="btn btn-info btn-sm" style="border-radius: 5px;">Edit</a>
                                     <a href="" class="btn btn-danger btn-sm" style="border-radius: 5px;">Hapus</a>
                                 </span>
                             </td>

@@ -26,7 +26,7 @@ class TransaksiController extends Controller
         $transaksis = Transaksi::all();
          // Get the latest transaction number and increment it
         $lastTransaksi = Transaksi::orderBy('created_at', 'desc')->first();
-        $newTransaksiNumber = $lastTransaksi ? 'TR-' . str_pad((int) substr($lastTransaksi->no_transaksi, 3) + 1, 4, '0', STR_PAD_LEFT) : 'TR-0001';
+        $newTransaksiNumber = $lastTransaksi ? 'TM-' . str_pad((int) substr($lastTransaksi->no_transaksi, 3) + 1, 4, '0', STR_PAD_LEFT) : 'TR-0001';
         return view("pages.transaksi.tambahtransaksi", compact("transaksis","barangs", "newTransaksiNumber"));
     }
 

@@ -2,6 +2,8 @@
 
 @section('content')
     <div class="container">
+    <div class=""><a href="/barang"><i class="bi bi-arrow-left-circle">Kembali ke data Barang</i></a></div>
+    <br>
         <h2>Edit Barang </h2>
 
         <div class="card">

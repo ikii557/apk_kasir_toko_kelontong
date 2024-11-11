@@ -59,7 +59,7 @@ class Controller extends BaseController
     {
         $users = User::find($id);
 
-        return view('nama_view', compact('users'));
+        return view('pages.user.editprofile', compact('users'));
 
     }
 

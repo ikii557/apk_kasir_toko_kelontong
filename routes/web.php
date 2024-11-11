@@ -82,11 +82,21 @@ Route::middleware(['auth'])->group(function () {
     // Rute khusus untuk Super Admin (akses penuh termasuk edit dan hapus transaksi)
     Route::middleware(['role:superadmin'])->group(function () {
 
+
+
+
         Route::get('/tambahkasir', [Controller::class, 'create']);
         Route::post('/store/user', [Controller::class, 'store']);
-        Route::get('/edituser/{id}', [Controller::class, 'edit']);
-        Route::post('/updateuser/{id}', [Controller::class, 'update']);
+
+
+
+        Route::get('/editprofile/{id}', [Controller::class, 'editprofile']);
+        Route::post('/updateprofile/{id}', [Controller::class, 'update']);
+
         Route::get('/destroy/user/{id}', [Controller::class, 'destroy']);
+
+
+
         // Full access to Transaksi Management (Super Admin access)
         Route::get('/edittransaksi/{id}', [TransaksiController::class, 'edit']);
         Route::post('/updatetransaksi/{id}', [TransaksiController::class, 'update']);
