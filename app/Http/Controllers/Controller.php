@@ -66,13 +66,31 @@ class Controller extends BaseController
     // Update a specific user's information
     public function update(Request $request, User $user)
     {
+
+        // Validasi input yang diterima dari form
         $request->validate([
-            'nama' => 'required|string|max:255',
-            'no_hp' => 'required|string|max:15',
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'role' => 'required|in:admin,superadmin',
+            'nama' => 'required|string|max:255',      // Nama wajib diisi dan tidak lebih dari 255 karakter
+            'no_hp' => 'required|string|max:15',      // No HP wajib diisi dan tidak lebih dari 15 karakter
+            'email' => 'required|email|unique:users,email,' . $user->id, // Email wajib, harus unik kecuali untuk email pengguna yang sama
+            'role' => 'required|in:admin,superadmin', // Role wajib dan hanya boleh 'admin' atau 'superadmin'
+        ],[
+            'nama.required' => 'Nama harus diisi.',
+            'nama.string' => 'Nama harus berupa teks.',
+            'nama.max' => 'Nama tidak boleh lebih dari 255 karakter.',
+
+            'no_hp.required' => 'Nomor HP harus diisi.',
+            'no_hp.string' => 'Nomor HP harus berupa teks.',
+            'no_hp.max' => 'Nomor HP tidak boleh lebih dari 15 karakter.',
+
+            'email.required' => 'Email harus diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'email.unique' => 'Email sudah terdaftar, gunakan email lain.',
+
+            'role.required' => 'Role harus dipilih.',
+            'role.in' => 'Role hanya bisa di pilih antara admin dan superadmin.',
         ]);
 
+        // Update data pengguna selain password
         $user->update([
             'nama' => $request->nama,
             'no_hp' => $request->no_hp,
@@ -80,13 +98,18 @@ class Controller extends BaseController
             'role' => $request->role,
         ]);
 
-        if ($request->password) {
+        // Jika password baru dimasukkan, update password yang di-hash
+        if ($request->has('password') && $request->password) {
+            // Hash password baru sebelum menyimpannya
             $user->password = bcrypt($request->password);
-            $user->save();
+            $user->save();  // Simpan perubahan password
         }
 
-        return redirect()->route('users.index')->with('success', 'Pengguna berhasil diperbarui.');
+        // Redirect kembali ke halaman profile dengan pesan sukses
+        return redirect()->route('pages.user.profile')->with('success', 'Pengguna berhasil diperbarui.');
     }
+
+
 
     // Delete a specific user
     public function destroy($id)
