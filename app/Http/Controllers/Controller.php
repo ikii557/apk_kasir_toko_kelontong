@@ -11,10 +11,13 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
-    public function profile(){
-        $users=User::all();
-        return view("pages.user.profile",compact("users"));
+    public function profile()
+    {
+        $users = User::all(); // This fetches all users if needed for the view.
+
+        return view("pages.user.profile", compact("users"));
     }
+
 
 
 
@@ -57,57 +60,47 @@ class Controller extends BaseController
     // Show the form for editing a specific user
     public function editprofile($id)
     {
-        $users = User::find($id);
-
+        $users = User::findOrFail($id); // Use `findOrFail` for better error handling
         return view('pages.user.editprofile', compact('users'));
-
     }
+
 
     // Update a specific user's information
-    public function update(Request $request, User $user)
-    {
+    public function update(Request $request, $id)
+{
+    $user = User::findOrFail($id); // Ensure user exists before updating
 
-        // Validasi input yang diterima dari form
-        $request->validate([
-            'nama' => 'required|string|max:255',      // Nama wajib diisi dan tidak lebih dari 255 karakter
-            'no_hp' => 'required|string|max:15',      // No HP wajib diisi dan tidak lebih dari 15 karakter
-            'email' => 'required|email|unique:users,email,' . $user->id, // Email wajib, harus unik kecuali untuk email pengguna yang sama
-            'role' => 'required|in:admin,superadmin', // Role wajib dan hanya boleh 'admin' atau 'superadmin'
-        ],[
-            'nama.required' => 'Nama harus diisi.',
-            'nama.string' => 'Nama harus berupa teks.',
-            'nama.max' => 'Nama tidak boleh lebih dari 255 karakter.',
+    // Validate input from the form
+    $request->validate([
+        'nama' => 'required|string|max:255',
+        'no_hp' => 'required|string|max:15',
+        'email' => 'required|email|unique:users,email,' . $user->id,
+        'role' => 'required|in:admin,superadmin',
+    ], [
+        'nama.required' => 'Nama harus diisi.',
+        'nama.string' => 'Nama harus berupa teks.',
+        'nama.max' => 'Nama tidak boleh lebih dari 255 karakter.',
+        'no_hp.required' => 'Nomor HP harus diisi.',
+        'no_hp.string' => 'Nomor HP harus berupa teks.',
+        'no_hp.max' => 'Nomor HP tidak boleh lebih dari 15 karakter.',
+        'email.required' => 'Email harus diisi.',
+        'email.email' => 'Format email tidak valid.',
+        'email.unique' => 'Email sudah terdaftar, gunakan email lain.',
+        'role.required' => 'Role harus dipilih.',
+        'role.in' => 'Role hanya bisa dipilih antara admin dan superadmin.',
+    ]);
 
-            'no_hp.required' => 'Nomor HP harus diisi.',
-            'no_hp.string' => 'Nomor HP harus berupa teks.',
-            'no_hp.max' => 'Nomor HP tidak boleh lebih dari 15 karakter.',
+    // Update user data
+    $user->update([
+        'nama' => $request->nama,
+        'no_hp' => $request->no_hp,
+        'email' => $request->email,
+        'role' => $request->role,
+    ]);
 
-            'email.required' => 'Email harus diisi.',
-            'email.email' => 'Format email tidak valid.',
-            'email.unique' => 'Email sudah terdaftar, gunakan email lain.',
-
-            'role.required' => 'Role harus dipilih.',
-            'role.in' => 'Role hanya bisa di pilih antara admin dan superadmin.',
-        ]);
-
-        // Update data pengguna selain password
-        $user->update([
-            'nama' => $request->nama,
-            'no_hp' => $request->no_hp,
-            'email' => $request->email,
-            'role' => $request->role,
-        ]);
-
-        // Jika password baru dimasukkan, update password yang di-hash
-        if ($request->has('password') && $request->password) {
-            // Hash password baru sebelum menyimpannya
-            $user->password = bcrypt($request->password);
-            $user->save();  // Simpan perubahan password
-        }
-
-        // Redirect kembali ke halaman profile dengan pesan sukses
-        return redirect()->route('pages.user.profile')->with('success', 'Pengguna berhasil diperbarui.');
-    }
+    // Redirect back to the profile or user list with a success message
+    return redirect('/profile')->with('success', 'Profil berhasil diperbarui.');
+}
 
 
 

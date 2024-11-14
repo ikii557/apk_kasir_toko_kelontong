@@ -177,18 +177,28 @@ public function destroy($id)
 
 
 
-    public function print($id)
-    {
-        // Ambil transaksi beserta detail barang yang terkait
-        $transaksis = Transaksi::with('detailTransaksi.barang')->findOrFail($id);
+public function print($id)
+{
+    // Ambil transaksi beserta detail barang yang terkait
+    $transaksis = Transaksi::with(['detailTransaksi.barang' => function ($query) {
+        // Hanya ambil barang yang stoknya lebih dari 0
+        $query->where('stok_barang', '>', 0);
+    }])->findOrFail($id);
 
-        // Calculate the total payment
-        $totalPayment = $transaksis->detailTransaksi->reduce(function ($carry, $detail) {
-            return $carry + ($detail->jumlah_barang * $detail->barang->harga_barang);
-        }, 0);
+    // Filter out any detailTransaksi where the barang is out of stock
+    $filteredDetails = $transaksis->detailTransaksi->filter(function ($detail) {
+        return $detail->barang && $detail->barang->stok_barang > 0;
+    });
 
-        return view('dokumentasi.struktransaksi', compact('transaksis', 'totalPayment'));
-    }
+    // Calculate the total payment for available items
+    $totalPayment = $filteredDetails->reduce(function ($carry, $detail) {
+        return $carry + ($detail->jumlah_barang * $detail->barang->harga_barang);
+    }, 0);
+
+    // Pass only available items to the view
+    return view('dokumentasi.struktransaksi', compact('transaksis', 'totalPayment', 'filteredDetails'));
+}
+
 
 
 

@@ -25,8 +25,18 @@
                         <li><strong class="text-dark">Email:</strong> <span>{{ Auth::user()->email }}</span></li>
                     </ul>
 
+
                     <!-- Edit Profile Button -->
-                    <button class="btn btn-primary mt-3">Edit Profile</button>
+                    @if(Auth::user()->role == 'superadmin')
+                     @foreach ($users as $kasir)
+                         @if ($loop->first) <!-- This checks if it's the first iteration -->
+                             <a href="/editprofile/{{$kasir->id}}" class="btn btn-primary btn-sm" style="border-radius: 5px;">Edit Profile</a>
+                         @endif
+                     @endforeach
+
+                     @endif
+
+
                 </div>
             </div>
         </div>
@@ -70,32 +80,32 @@
                                 <span>
                                     <a href="/editprofile/{{$kasir->id}}" class="btn btn-info btn-sm" style="border-radius: 5px;">Edit</a>
                                     <a href="javascript:void(0);"
-   data-toggle="tooltip"
-   data-placement="top"
-   title="Close"
-   onclick="confirmDeletion({{ $kasir->id }});">
-   <i class="fa fa-close color-danger"></i>
-</a>
+                                        data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="Close"
+                                        onclick="confirmDeletion({{ $kasir->id }});" class="btn btn-sm btn-danger">
+                                        <i class="fa fa-close color-danger"></i>
+                                        </a>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    function confirmDeletion(id) {
-        Swal.fire({
-            title: 'Apakah Anda yakin?',
-            text: "Data ini akan dihapus dan tidak bisa dikembalikan!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, hapus!',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = '/destroy/transaksi/' + id;
-            }
-        });
-    }
-</script>
+                                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                        <script>
+                                            function confirmDeletion(id) {
+                                                Swal.fire({
+                                                    title: 'Apakah Anda yakin?',
+                                                    text: "Data ini akan dihapus dan tidak bisa dikembalikan!",
+                                                    icon: 'warning',
+                                                    showCancelButton: true,
+                                                    confirmButtonColor: '#3085d6',
+                                                    cancelButtonColor: '#d33',
+                                                    confirmButtonText: 'Ya, hapus!',
+                                                    cancelButtonText: 'Batal'
+                                                }).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        window.location.href = '/destroyuser/' + id;
+                                                    }
+                                                });
+                                            }
+                                        </script>
 
 
                                 </span>

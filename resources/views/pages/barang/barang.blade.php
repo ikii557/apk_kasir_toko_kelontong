@@ -105,8 +105,8 @@
                                                     <script>
                                                         function confirmDeletion(id) {
                                                             Swal.fire({
-                                                                text: 'Apakah Anda yakin?',
                                                                 title:"Data ini akan dihapus dan tidak bisa dikembalikan!",
+                                                                text: 'Apakah Anda yakin?',
                                                                 icon: 'warning',
                                                                 showCancelButton: true,
                                                                 confirmButtonColor: '#3085d6',
@@ -115,7 +115,7 @@
                                                                 cancelButtonText: 'Batal'
                                                             }).then((result) => {
                                                                 if (result.isConfirmed) {
-                                                                    window.location.href = '/destroy/transaksi/' + id;
+                                                                    window.location.href = '/destroy/barang/' + id;
                                                                 }
                                                             });
                                                         }
