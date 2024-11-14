@@ -8,9 +8,9 @@
         <h4 class="p-2">Print Struk Transaksi</h4>
         <div class="card">
             <div class="card-body">
-            <div class="float-right">
-              <a href="javascript:void(0);" onclick="window.print();"><i class="bi bi-printer"></i></a>
-            </div>
+                <div class="float-right">
+                    <a href="javascript:void(0);" onclick="window.print();"><i class="bi bi-printer"></i></a>
+                </div>
 
                 <div class="mt-4 text-center">
                     <h4>Toko Kelontong Makmur</h4>
@@ -21,7 +21,7 @@
                 <div>
                     <p><strong>ID Transaksi:</strong> <span class="float-right">{{ $transaksis->no_transaksi }}</span></p>
                     <p><strong>Tanggal Transaksi:</strong> <span class="float-right">{{ $transaksis->tanggal_transaksi }}</span></p>
-                    <p><strong>Kasir:</strong><span class="float-right">{{$transaksis->user->nama}}</span></p>
+                    <p><strong>Kasir:</strong> <span class="float-right">{{ $transaksis->user->nama }}</span></p>
                     <hr>
                     <h5>Barang yang Dibeli:</h5>
                     <table class="table table-sm">
@@ -54,18 +54,14 @@
                             }}
                         </p>
                         <p><strong>Metode Pembayaran:</strong> {{ $transaksis->metode_pembayaran }}</p>
+                        <hr>
+                        <p class="text-center">Hubungi costumer service kami <strong>083134000194</strong> jika anda mengalami masalah dalam berbelanja di toko kami
+                            <span class="text-center">Terimakasih</span> </p>
                     </div>
-
-
                 </div>
             </div>
         </div>
     </div>
-
-
-
 </div>
-
-
 
 @endsection
