@@ -8,7 +8,7 @@ use App\Models\DetailTransaksi;
 
                         <div class="row">
                             <div class="col-lg-12 mt-12">
-                            <div class="card ">
+                            <div class="card mt-5">
                             <h4 class="p-4">Data Transaksi</h4>
                             <div class="p-4 me-4">
                                 <!-- <form action="/transaksi" method="get">
@@ -42,13 +42,14 @@ use App\Models\DetailTransaksi;
                                                 <td>{{$no +1}}</td>
                                                 <td>{{$transaksi->no_transaksi}}</td>
                                                 <td>{{$transaksi->tanggal_transaksi}}</td>
-                                                <td>{{$transaksi->user->nama }}</td>
+                                                <td>{{ $transaksi->user ? $transaksi->user->nama : 'Tidak ada kasir' }}</td>
+
                                                 @php
                                                     $detailtransaksis = DetailTransaksi::where('transaksi_id', $transaksi->id)->get();
                                                 @endphp
                                                 <td>
-                                                    @foreach ($detailtransaksis as $detailtransaksi)
-                                                        {{ $detailtransaksi->barang?->nama_barang ?? "nama barang tidak ada dalam daftar" }},
+                                                    @foreach ($detailtransaksis as $detailtransaksi) 
+                                                        {{ $detailtransaksi->barang?->nama_barang ?? "nama barang tidak ada dalam daftar barang" }},
                                                     @endforeach
                                                 </td>
 
