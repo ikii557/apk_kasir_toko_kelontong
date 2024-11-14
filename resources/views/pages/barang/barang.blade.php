@@ -93,7 +93,34 @@
                                             <td>Rp.{{ $barang->harga_barang }}</td>
                                             <td>
                                                 <a href="/editbarang/{{$barang->id}}" class="btn btn-info">Edit</a>
-                                                <a href="/destroy/barang/{{$barang->id}}" class="btn btn-danger">Hapus</a>
+                                                <a href="javascript:void(0);" class="btn btn-danger"
+                                                    data-toggle="tooltip"
+                                                    data-placement="top"
+                                                    title="Close"
+                                                    onclick="confirmDeletion({{ $barang->id }});">
+                                                    <i class="fa fa-close color-danger"></i>
+                                                    </a>
+
+                                                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                                    <script>
+                                                        function confirmDeletion(id) {
+                                                            Swal.fire({
+                                                                text: 'Apakah Anda yakin?',
+                                                                title:"Data ini akan dihapus dan tidak bisa dikembalikan!",
+                                                                icon: 'warning',
+                                                                showCancelButton: true,
+                                                                confirmButtonColor: '#3085d6',
+                                                                cancelButtonColor: '#d33',
+                                                                confirmButtonText: 'Ya, hapus!',
+                                                                cancelButtonText: 'Batal'
+                                                            }).then((result) => {
+                                                                if (result.isConfirmed) {
+                                                                    window.location.href = '/destroy/transaksi/' + id;
+                                                                }
+                                                            });
+                                                        }
+                                                    </script>
+
                                             </td>
                                         </tr>
                                     @endforeach

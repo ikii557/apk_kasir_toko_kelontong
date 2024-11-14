@@ -69,7 +69,35 @@
                             <td>
                                 <span>
                                     <a href="/editprofile/{{$kasir->id}}" class="btn btn-info btn-sm" style="border-radius: 5px;">Edit</a>
-                                    <a href="" class="btn btn-danger btn-sm" style="border-radius: 5px;">Hapus</a>
+                                    <a href="javascript:void(0);"
+   data-toggle="tooltip"
+   data-placement="top"
+   title="Close"
+   onclick="confirmDeletion({{ $kasir->id }});">
+   <i class="fa fa-close color-danger"></i>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function confirmDeletion(id) {
+        Swal.fire({
+            title: 'Apakah Anda yakin?',
+            text: "Data ini akan dihapus dan tidak bisa dikembalikan!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/destroy/transaksi/' + id;
+            }
+        });
+    }
+</script>
+
+
                                 </span>
                             </td>
 

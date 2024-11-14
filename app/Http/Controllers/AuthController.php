@@ -54,7 +54,7 @@ class AuthController extends Controller
             'email'    => 'required|email',
             'password' => 'required|min:8',
         ],[
-            'email.requied' => 'email harus di isi',
+            'email.required' => 'email harus di isi',
             'email.email'   => 'harus masukan email',
             'password.required' => 'masukan password',
             'password.min' => 'password harus 8',

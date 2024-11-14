@@ -93,7 +93,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/editprofile/{id}', [Controller::class, 'editprofile']);
         Route::post('/updateprofile/{id}', [Controller::class, 'update']);
 
-        Route::get('/destroy/user/{id}', [Controller::class, 'destroy']);
+        Route::get('/destroyuser/{id}', [Controller::class, 'destroy']);
 
 
 

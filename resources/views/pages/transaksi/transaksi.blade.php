@@ -11,13 +11,13 @@ use App\Models\DetailTransaksi;
                             <div class="card ">
                             <h4 class="p-4">Data Transaksi</h4>
                             <div class="p-4 me-4">
-                                <form action="/transaksi" method="get">
+                                <!-- <form action="/transaksi" method="get">
                                     <div class="input-group">
                                         <input type="text"  class="text-control p-2" name=search value="{{request('search')}}">
                                         <button class="btn btn-primary">cari</button>
                                     </div>
-                                    <div class="float-right"><a href="/tambahtransaksi" class="btn btn-primary ">Tambah Transaksi</a></div>
-                            </form>
+                                </form> -->
+                                <div class="float-right"><a href="/tambahtransaksi" class="btn btn-primary ">Tambah Transaksi</a></div>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -80,7 +80,34 @@ use App\Models\DetailTransaksi;
                                                 <td>{{$transaksi->metode_pembayaran}}</td>
 
                                                 <td><span class="{{ auth()->user()->role == 'admin' ? 'd-none' : '' }}"><a href="/edittransaksi/{{$transaksi->id}}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a>
-                                                <a href="/destroy/transaksi/{{$transaksi->id}}" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
+                                                <a href="javascript:void(0);"
+   data-toggle="tooltip"
+   data-placement="top"
+   title="Close"
+   onclick="confirmDeletion({{ $transaksi->id }});">
+   <i class="fa fa-close color-danger"></i>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function confirmDeletion(id) {
+        Swal.fire({
+            title: 'Apakah Anda yakin?',
+            text: "Data ini akan dihapus dan tidak bisa dikembalikan!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/destroy/transaksi/' + id;
+            }
+        });
+    }
+</script>
+</span>
                                                 <span><a href="/print/{{$transaksi->id}}" data-toggle="tooltip" data-placement="top" title="Print"><i class="bi bi-printer-fill"></i></a> </span>
                                                 </td>
 
