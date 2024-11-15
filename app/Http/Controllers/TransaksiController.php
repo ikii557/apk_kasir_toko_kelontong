@@ -82,7 +82,7 @@ public function store(Request $request)
         $barang->decrement('stok_barang', $jumlahbarang);
     }
 
-    return redirect('/transaksi')->with('success', 'Transaksi berhasil disimpan.');
+    return redirect('/transaksi')->with('success', 'Transaksi berhasil ditambahkan.');
 }
 
 

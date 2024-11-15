@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+@if(session('success'))
+        <div class="alert alert-success" id="success-alert">
+            {{ session('success') }}
+        </div>
+    @endif
+
+
 
 
             <div class="row">
@@ -15,19 +22,27 @@
                             <div class="form-group">
                                 <label for="nama_barang">Nama Barang:</label>
                                 <input type="text" name="nama_barang" id="nama_barang" class="form-control" value="{{ old('nama_barang') }}" placeholder="isi nama barang">
-
+                                @error('nama_barang')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
                             </div>
 
                             <!-- Stok -->
                             <div class="form-group">
-                                <label for="stok">Jumlah Stok:</label>
-                                <input type="number" name="stok_barang" id="stok" class="form-control" value="{{ old('stok') }}" placeholder="isi jumlah stok">
+                                <label for="stok_barang">Jumlah Stok:</label>
+                                <input type="number" name="stok_barang" id="stok" class="form-control" value="{{ old('stok_barang') }}" placeholder="isi jumlah stok">
+                                @error('stok_barang')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
                             </div>
 
                             <!-- Harga Barang -->
                             <div class="form-group">
                                 <label for="harga_barang">Harga Barang (Rp):</label>
                                 <input type="number" name="harga_barang" id="harga_barang" class="form-control" value="{{ old('harga_barang') }}" step="0.01" placeholder="isi harga barang">
+                                @error('harga_barang')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
                             </div>
 
                             <!-- Submit Button -->
