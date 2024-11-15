@@ -54,7 +54,7 @@ class Controller extends BaseController
             'password' => bcrypt($request->password),
             'role'     => $request->role
         ]);
-        return redirect('/profile')->with('success', 'Pengguna berhasil ditambahkan.');
+        return redirect('/profile')->with('success', 'Kasir Baru berhasil ditambahkan.');
     }
 
     // Show the form for editing a specific user
@@ -114,6 +114,6 @@ class Controller extends BaseController
         $users->delete();
 
         // Redirect back to the 'barang' list page with a success message
-        return redirect('/profile')->with('success', 'Barang berhasil dihapus!');
+        return redirect('/profile')->with('success', 'Kasir berhasil dihapus!');
     }
 }

@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('content')
 
+@if(session('success'))
+        <div class="alert alert-success" id="success-alert">
+            {{ session('success') }}
+        </div>
+    @endif
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-4 col-xl-3">

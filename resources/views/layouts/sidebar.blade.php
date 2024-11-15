@@ -57,7 +57,43 @@
                         <ul aria-expanded="false">
                             <li><a href="/profile">Profile</a></li>
                             <!-- <li><a href="/tambahadmin">Tambah admin</a></li> -->
-                            <li><a href="/logout">Logout</a></li>
+                            <a href="javascript:void(0);"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Logout"
+                            onclick="confirmLogout();"
+                            class="btn btn-sm btn-danger">
+                            Logout
+                            </a>
+
+                            <!-- Formulir logout tersembunyi -->
+                            <form id="logout-form" action="{{ '/logout' }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+
+                            <!-- SweetAlert2 -->
+                            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                            <script>
+                                function confirmLogout() {
+                                    Swal.fire({
+                                        title: 'Apakah Anda yakin?',
+                                        text: "Anda akan logout dari sesi ini.",
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#3085d6',
+                                        cancelButtonColor: '#d33',
+                                        confirmButtonText: 'Ya, logout',
+                                        cancelButtonText: 'Batal'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            // Kirim formulir logout
+                                            document.getElementById('logout-form').submit();
+                                        }
+                                    });
+                                }
+                            </script>
+
+
                         </ul>
                     </li>
                     <!-- <li>

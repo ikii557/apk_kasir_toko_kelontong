@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if(session('success'))
+        <div class="alert alert-success" id="success-alert">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="container">
         <h2>Tambah Pengguna</h2>
 

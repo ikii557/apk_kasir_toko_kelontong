@@ -3,7 +3,11 @@ use App\Models\DetailTransaksi;
 ?>
 @extends('layouts.app')
 @section('content')
-
+@if(session('success'))
+        <div class="alert alert-success" id="success-alert">
+            {{ session('success') }}
+        </div>
+    @endif
 
 
                         <div class="row">
@@ -48,7 +52,7 @@ use App\Models\DetailTransaksi;
                                                     $detailtransaksis = DetailTransaksi::where('transaksi_id', $transaksi->id)->get();
                                                 @endphp
                                                 <td>
-                                                    @foreach ($detailtransaksis as $detailtransaksi) 
+                                                    @foreach ($detailtransaksis as $detailtransaksi)
                                                         {{ $detailtransaksi->barang?->nama_barang ?? "nama barang tidak ada dalam daftar barang" }},
                                                     @endforeach
                                                 </td>

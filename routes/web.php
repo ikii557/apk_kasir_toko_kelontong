@@ -62,7 +62,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/report', [ReportController::class, 'index'])->name('report.index');
 
         // Logout
-        Route::get('/logout', [AuthController::class, 'logout']);
+        Route::post('/logout', [AuthController::class, 'logout']);
 
         // Barang Management (Admin dan Super Admin akses)
         Route::get('/barang', [BarangController::class, 'index']);
