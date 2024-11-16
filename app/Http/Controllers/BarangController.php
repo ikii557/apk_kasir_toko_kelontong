@@ -56,12 +56,11 @@ class BarangController extends Controller
     }
     public function update(Request $request, $id){
         $request->validate([
-            'nama_barang'=>'required|unique:barangs,nama_barang',
+            'nama_barang'=>'required',
             'stok_barang'=> 'required',
             'harga_barang'=> 'required',
         ],[
             'nama_barang.required'=> 'barang harus di isi',
-            'nama_barang.unique'    => 'barang sudah ada harap masukan barang yang belum ada',
             'stok_barang.required'=> 'stok ahrus di isi',
             'harga_barang.required'=> 'harga harus di isi',
         ]);
